@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Phone, Mail, MapPin, ArrowUp } from 'lucide-react';
 import { companyInfo } from '../data/websiteData';
 
 export default function Footer() {
+  const [showBackToTop, setShowBackToTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 350);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -93,14 +103,16 @@ export default function Footer() {
       </div>
 
       {/* Floating Gold Back to Top Button */}
-      <button
-        onClick={scrollToTop}
-        type="button"
-        className="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-[#f2ae38] hover:bg-[#f8bd59] text-[#142b45] shadow-2xl flex items-center justify-center transition-all hover:-translate-y-1 cursor-pointer focus:outline-none"
-        aria-label="Back to Top"
-      >
-        <ArrowUp className="w-5 h-5 stroke-[2.5]" />
-      </button>
+      {showBackToTop && (
+        <button
+          onClick={scrollToTop}
+          type="button"
+          className="fixed bottom-6 right-6 z-40 w-11 h-11 rounded-full bg-[#f2ae38] hover:bg-[#f8bd59] text-[#142b45] shadow-2xl flex items-center justify-center transition-all hover:-translate-y-1 cursor-pointer focus:outline-none"
+          aria-label="Back to Top"
+        >
+          <ArrowUp className="w-5 h-5 stroke-[2.5]" />
+        </button>
+      )}
     </footer>
   );
 }

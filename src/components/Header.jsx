@@ -56,7 +56,7 @@ export default function Header({ onOpenQuote }) {
           </a>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-7 text-[13px] font-semibold text-[#28384a]">
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] font-semibold text-[#28384a] whitespace-nowrap">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               return (
