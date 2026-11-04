@@ -111,11 +111,7 @@ export default function Team({ onOpenQuote }) {
             {/* Eagle Artwork seamlessly blending without border */}
             <div
               ref={eagleRef}
-              className="w-full sm:w-[220px] lg:w-[260px] xl:w-[290px] h-[220px] sm:h-[260px] lg:h-[280px] shrink-0 relative overflow-hidden"
-              style={{
-                maskImage: 'linear-gradient(to right, black 72%, transparent 100%)',
-                WebkitMaskImage: 'linear-gradient(to right, black 72%, transparent 100%)',
-              }}
+              className="w-full sm:w-[220px] lg:w-[260px] xl:w-[290px] h-[200px] sm:h-[260px] lg:h-[280px] shrink-0 relative overflow-hidden [mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)] sm:[mask-image:linear-gradient(to_right,black_72%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_75%,transparent_100%)] sm:[-webkit-mask-image:linear-gradient(to_right,black_72%,transparent_100%)]"
             >
               <img
                 src="/griffin-team-eagle.jpg"
@@ -127,7 +123,7 @@ export default function Team({ onOpenQuote }) {
             {/* Intro Copy & Action */}
             <div
               ref={introRef}
-              className="py-6 px-6 sm:px-4 lg:py-6 lg:pl-2 lg:pr-6 max-w-xs shrink-0 flex flex-col justify-center text-left"
+              className="py-4 sm:py-6 px-5 sm:px-4 lg:py-6 lg:pl-2 lg:pr-6 max-w-sm shrink-0 flex flex-col justify-center text-center sm:text-left items-center sm:items-start"
             >
               <div className="inline-flex items-center gap-2 mb-1.5">
                 <span className="text-[11px] font-extrabold uppercase tracking-[0.22em] text-[#142338]">
@@ -160,7 +156,7 @@ export default function Team({ onOpenQuote }) {
           {/* Right Wing: 4 Team Member Cards */}
           <div
             ref={cardsRef}
-            className="p-4 sm:p-5 lg:py-6 lg:pr-7 lg:pl-4 flex-1 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-3.5 w-full items-center"
+            className="p-3 sm:p-5 lg:py-6 lg:pr-7 lg:pl-4 flex-1 grid grid-cols-2 sm:grid-cols-4 gap-2.5 sm:gap-3.5 w-full items-center"
           >
             {teamMembers.map((member) => (
               <div
