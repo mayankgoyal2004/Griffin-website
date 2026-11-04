@@ -1,6 +1,37 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Advantage() {
+  const sectionRef = useRef(null);
+  const gridRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (gridRef.current) {
+        gsap.fromTo(
+          gridRef.current.children,
+          { opacity: 0, y: 25 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: gridRef.current,
+              start: 'top 88%',
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   const items = [
     {
       title: 'End-to-End Solutions',
@@ -43,7 +74,7 @@ export default function Advantage() {
   ];
 
   return (
-    <section id="advantage" className="py-8 sm:py-10 bg-[#fffdfa] border-t border-[#ece7de]">
+    <section ref={sectionRef} id="advantage" className="py-8 sm:py-10 bg-[#fffdfa] border-t border-[#ece7de] overflow-hidden">
       <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-6 lg:gap-0">
           {/* Title block */}
@@ -61,7 +92,7 @@ export default function Advantage() {
           </div>
 
           {/* 4 Feature Items */}
-          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4">
+          <div ref={gridRef} className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4">
             {items.map((item, idx) => (
               <div
                 key={item.title}

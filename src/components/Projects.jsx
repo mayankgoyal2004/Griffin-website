@@ -1,9 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { projectsData } from '../data/websiteData';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Projects({ onSelectProject }) {
   const [activeFilter, setActiveFilter] = useState('all');
+  const sectionRef = useRef(null);
+  const gridRef = useRef(null);
 
   const filters = [
     { label: 'All Projects', value: 'all' },
@@ -18,8 +24,33 @@ export default function Projects({ onSelectProject }) {
       ? projectsData
       : projectsData.filter((item) => item.category === activeFilter);
 
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (gridRef.current) {
+        gsap.fromTo(
+          gridRef.current.children,
+          { opacity: 0, y: 35, scale: 0.96 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.65,
+            stagger: 0.08,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: gridRef.current,
+              start: 'top 85%',
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, [activeFilter]);
+
   return (
-    <section id="projects" className="py-20 sm:py-24 bg-[#f7f4ee] relative">
+    <section ref={sectionRef} id="projects" className="py-20 sm:py-24 bg-[#f7f4ee] relative overflow-hidden">
       <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
         {/* Header & Filter Row */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
@@ -73,7 +104,7 @@ export default function Projects({ onSelectProject }) {
           </button>
 
           {/* 4 Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {filteredProjects.map((project) => (
               <div
                 key={project.id}

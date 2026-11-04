@@ -1,14 +1,64 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { teamMembers } from '../data/websiteData';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Team({ onOpenQuote }) {
+  const sectionRef = useRef(null);
+  const introRef = useRef(null);
+  const cardsRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (introRef.current) {
+        gsap.fromTo(
+          introRef.current,
+          { opacity: 0, x: -30 },
+          {
+            opacity: 1,
+            x: 0,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: introRef.current,
+              start: 'top 85%',
+            },
+          }
+        );
+      }
+
+      if (cardsRef.current) {
+        gsap.fromTo(
+          cardsRef.current.children,
+          { opacity: 0, y: 35, scale: 0.94 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 0.65,
+            stagger: 0.1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: cardsRef.current,
+              start: 'top 85%',
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section id="team" className="py-20 sm:py-24 bg-[#e4edf0] text-[#142b45] relative">
+    <section ref={sectionRef} id="team" className="py-20 sm:py-24 bg-[#e4edf0] text-[#142b45] relative overflow-hidden">
       <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           {/* Team Intro Column */}
-          <div className="lg:col-span-4">
+          <div ref={introRef} className="lg:col-span-4">
             <div className="flex items-center gap-2 mb-2">
               <span className="text-[11px] font-extrabold uppercase tracking-[0.24em] text-[#b46e11]">
                 Our Team
@@ -32,7 +82,7 @@ export default function Team({ onOpenQuote }) {
           </div>
 
           {/* 4 Team Member Cards */}
-          <div className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
+          <div ref={cardsRef} className="lg:col-span-8 grid grid-cols-2 sm:grid-cols-4 gap-4">
             {teamMembers.map((member) => (
               <div
                 key={member.name}
