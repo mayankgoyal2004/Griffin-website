@@ -92,7 +92,7 @@ export default function Footer() {
         {/* Bottom Sub-bar */}
         <div className="pt-5 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[#a9bbc9]">
           <div>
-            © {new Date().getFullYear()} Griffin Construction. All Rights Reserved.
+            © {new Date().getFullYear()} Developed and Powered by Vibrantick Infotech Solutions. All Rights Reserved.
           </div>
           <div className="flex items-center gap-2">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
