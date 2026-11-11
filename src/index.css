@@ -15,8 +15,17 @@
   --color-muted: #657488;
   --color-line: rgba(17, 29, 44, 0.12);
 
-  --font-serif: "Playfair Display", Georgia, serif;
-  --font-sans: "DM Sans", "Plus Jakarta Sans", system-ui, sans-serif;
+  --font-serif: serif;
+  --font-sans: serif;
+}
+
+html,
+body,
+button,
+input,
+select,
+textarea {
+  font-family: serif;
 }
 
 :root {
