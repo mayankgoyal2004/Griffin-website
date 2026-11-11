@@ -1,8 +1,20 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Menu, X, ChevronDown } from 'lucide-react';
+import {
+  Phone,
+  Menu,
+  X,
+  ChevronDown,
+  Home,
+  Info,
+  Layers,
+  Building2,
+  Users,
+  FileEdit,
+  Mail,
+} from 'lucide-react';
 import { companyInfo } from '../data/websiteData';
 
-export default function Header({ onOpenQuote }) {
+export default function Header() {
   const [isSticky, setIsSticky] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -11,7 +23,7 @@ export default function Header({ onOpenQuote }) {
     const handleScroll = () => {
       setIsSticky(window.scrollY > 30);
 
-      const sections = ['home', 'services', 'about', 'projects', 'team', 'advantage', 'contact'];
+      const sections = ['home', 'about', 'services', 'projects', 'team', 'contact'];
       const scrollPos = window.scrollY + 180;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -28,76 +40,90 @@ export default function Header({ onOpenQuote }) {
   }, []);
 
   const navLinks = [
-    { label: 'Home', href: '#home', id: 'home' },
-    { label: 'About', href: '#about', id: 'about' },
-    { label: 'Services', href: '#services', id: 'services', hasDropdown: true },
-    { label: 'Projects', href: '#projects', id: 'projects' },
-    { label: 'Team', href: '#team', id: 'team' },
-    { label: 'Contact', href: '#contact', id: 'contact' },
+    { label: 'Home', href: '#home', id: 'home', icon: Home },
+    { label: 'About', href: '#about', id: 'about', icon: Info },
+    { label: 'Services', href: '#services', id: 'services', icon: Layers, hasDropdown: true },
+    { label: 'Projects', href: '#projects', id: 'projects', icon: Building2 },
+    { label: 'Team', href: '#team', id: 'team', icon: Users },
+    { label: 'Blog', href: '#advantage', id: 'blog', icon: FileEdit },
+    { label: 'Contact', href: '#contact', id: 'contact', icon: Mail },
   ];
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 w-full h-[68px] z-50 transition-all duration-300 flex items-center ${
           isSticky
-            ? 'bg-white/95 backdrop-blur-md shadow-sm py-2.5 border-b border-[#0e1d2f]/10'
-            : 'bg-white/90 backdrop-blur-sm py-3.5'
+            ? 'bg-[#06111e]/92 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.6)] border-b border-white/10'
+            : 'bg-gradient-to-b from-[#030914]/85 via-[#030914]/45 to-transparent backdrop-blur-[1.5px]'
         }`}
       >
-        <div className="max-w-[1240px] mx-auto px-5 sm:px-8 flex items-center justify-between gap-4">
-          {/* Logo */}
-          <a href="#home" className="flex items-center group">
+        <div className="max-w-[1280px] w-full mx-auto px-5 sm:px-8 flex items-center justify-between gap-4">
+          {/* Brand Logo: Gryfno Szajka 3 Griffins Logo */}
+          <a href="#home" className="flex items-center group shrink-0">
             <img
               src="/logo.png"
-              alt="Gryfno Szajka Construction"
-              className="h-11 sm:h-13 w-auto object-contain transition-transform group-hover:scale-105"
+              alt="Gryfno Szajka"
+              className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105 drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]"
             />
           </a>
 
-          {/* Desktop Nav Links */}
-          <nav className="hidden lg:flex items-center gap-5 xl:gap-7 text-[13px] font-semibold text-[#28384a] whitespace-nowrap">
+          {/* Desktop Nav Links with Stacked Icons - Clean, natural overlay */}
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8 whitespace-nowrap">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
+              const Icon = link.icon;
               return (
                 <a
                   key={link.id}
                   href={link.href}
-                  className={`inline-flex items-center gap-1 transition-colors hover:text-[#d88918] ${
-                    isActive ? 'text-[#d88918] font-bold' : ''
+                  className={`group relative flex flex-col items-center justify-center gap-1 py-1 px-1.5 transition-all ${
+                    isActive
+                      ? 'text-[#f2ae38]'
+                      : 'text-white/95 hover:text-[#f2ae38]'
                   }`}
                 >
-                  <span>{link.label}</span>
-                  {link.hasDropdown && <ChevronDown className="w-3.5 h-3.5 text-[#627184]" />}
+                  <Icon
+                    className={`w-4 h-4 transition-all duration-200 group-hover:scale-110 drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] ${
+                      isActive
+                        ? 'text-[#f2ae38] stroke-[2.4] drop-shadow-[0_0_8px_rgba(242,174,56,0.7)]'
+                        : 'text-white stroke-[2] group-hover:text-[#f2ae38]'
+                    }`}
+                  />
+                  <div className="flex items-center gap-1 text-[13px] font-bold tracking-wide leading-none drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+                    <span>{link.label}</span>
+                    {link.hasDropdown && (
+                      <ChevronDown
+                        className={`w-3 h-3 -ml-0.5 transition-transform group-hover:rotate-180 ${
+                          isActive ? 'text-[#f2ae38]' : 'text-white/80 group-hover:text-[#f2ae38]'
+                        }`}
+                      />
+                    )}
+                  </div>
+                  {/* Active Indicator Underline matching Reference Screenshot */}
+                  {isActive && (
+                    <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-8 h-[2.5px] bg-[#f2ae38] rounded-full shadow-[0_0_8px_rgba(242,174,56,0.9)]" />
+                  )}
                 </a>
               );
             })}
           </nav>
 
-          {/* Right Action Buttons */}
-          <div className="hidden sm:flex items-center gap-3">
+          {/* Right Action: Mobile / Phone Number with warm frosted glass pill */}
+          <div className="hidden sm:flex items-center">
             <a
               href={`tel:${companyInfo.phone.replace(/[^0-9+]/g, '')}`}
-              className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold text-[#142334] bg-[#f4f6f8] hover:bg-[#e9edf1] border border-[#d6dde5] transition-all"
+              className="group inline-flex items-center gap-2.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-[13px] font-bold text-white bg-black/35 hover:bg-[#f2ae38] hover:text-[#061220] border border-white/20 hover:border-[#f2ae38] backdrop-blur-md transition-all duration-300 shadow-[0_4px_20px_rgba(0,0,0,0.35)]"
             >
-              <Phone className="w-3.5 h-3.5 text-[#d88918]" />
-              <span>{companyInfo.phone}</span>
+              <Phone className="w-3.5 h-3.5 text-[#f2ae38] transition-colors group-hover:text-[#061220]" />
+              <span className="tracking-wide drop-shadow-sm">{companyInfo.phone}</span>
             </a>
-
-            <button
-              onClick={onOpenQuote}
-              type="button"
-              className="inline-flex items-center gap-1.5 px-4.5 py-2 rounded-xl text-xs font-extrabold text-[#111a26] bg-[#ea8b0d] hover:bg-[#d67b07] hover:text-white shadow-[0_4px_14px_rgba(234,139,13,0.35)] transition-all cursor-pointer"
-            >
-              <span>Get a Quote</span>
-              <span className="text-sm leading-none font-bold">→</span>
-            </button>
           </div>
 
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-[#0b1725] rounded-lg hover:bg-black/5"
+            className="lg:hidden p-2 text-white/90 rounded-lg hover:bg-white/10 transition-colors"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -109,44 +135,54 @@ export default function Header({ onOpenQuote }) {
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
           <div
-            className="fixed inset-0 bg-[#0b1725]/60 backdrop-blur-sm"
+            className="fixed inset-0 bg-[#050e18]/80 backdrop-blur-md"
             onClick={() => setMobileMenuOpen(false)}
           />
-          <div className="fixed top-[62px] left-0 right-0 bg-white border-b border-[#0b1725]/10 px-6 py-6 shadow-xl flex flex-col gap-3">
-            <div className="grid grid-cols-2 gap-2 text-sm font-semibold">
-              {navLinks.map((link) => (
-                <a
-                  key={link.id}
-                  href={link.href}
+
+          <div className="fixed top-0 right-0 w-[280px] h-full bg-[#071322] border-l border-white/10 shadow-2xl p-6 flex flex-col justify-between z-50">
+            <div>
+              <div className="flex items-center justify-between pb-6 border-b border-white/10 mb-6">
+                <span className="text-sm font-bold text-white tracking-widest uppercase">Menu</span>
+                <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`p-2.5 rounded-lg transition-colors ${
-                    activeSection === link.id
-                      ? 'bg-[#ea8b0d]/15 text-[#d88918] font-bold'
-                      : 'text-[#142334] hover:bg-black/5'
-                  }`}
+                  className="p-1.5 text-white/80 hover:text-white"
+                  aria-label="Close menu"
                 >
-                  {link.label}
-                </a>
-              ))}
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <nav className="flex flex-col gap-2">
+                {navLinks.map((link) => {
+                  const isActive = activeSection === link.id;
+                  const Icon = link.icon;
+                  return (
+                    <a
+                      key={link.id}
+                      href={link.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`flex items-center gap-3.5 px-4 py-3 rounded-xl text-sm font-bold transition-all ${
+                        isActive
+                          ? 'bg-[#d88918] text-[#071322]'
+                          : 'text-white/85 hover:bg-white/5 hover:text-white'
+                      }`}
+                    >
+                      <Icon className="w-4 h-4" />
+                      <span>{link.label}</span>
+                    </a>
+                  );
+                })}
+              </nav>
             </div>
 
-            <div className="pt-3 border-t border-[#0b1725]/10 flex flex-col gap-2">
+            <div className="pt-6 border-t border-white/10">
               <a
                 href={`tel:${companyInfo.phone.replace(/[^0-9+]/g, '')}`}
-                className="flex items-center justify-center gap-2 py-2.5 rounded-xl border border-[#d6dde5] font-bold text-xs text-[#142334]"
+                className="flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-gradient-to-r from-[#d88918] to-[#f2ae38] text-[#071322] font-bold text-xs uppercase tracking-wider shadow-lg"
               >
-                <Phone className="w-3.5 h-3.5 text-[#d88918]" />
-                <span>Call {companyInfo.phone}</span>
+                <Phone className="w-4 h-4" />
+                <span>Call Us</span>
               </a>
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenQuote();
-                }}
-                className="flex items-center justify-center gap-1.5 py-2.5 rounded-xl font-bold text-xs text-[#111a26] bg-[#ea8b0d]"
-              >
-                <span>Get a Quote →</span>
-              </button>
             </div>
           </div>
         </div>
