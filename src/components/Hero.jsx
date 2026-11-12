@@ -85,12 +85,9 @@ export default function Hero() {
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0">
         <img
           ref={bgImgRef}
-          src="/hero-bg.jpg"
+          src="/Griffin-valiue.png"
           alt="Griffin Construction Artwork"
           className="w-full h-full object-cover object-[78%_top] sm:object-[82%_top] md:object-[96%_top] lg:object-[98%_top] xl:object-[96%_top]"
-          onError={(e) => {
-            e.currentTarget.src = '/Griffin-based.png';
-          }}
         />
 
         {/* Localized Left Gradient (Desktop): Soft shading behind text only; cathedral dome, castle, sky & griffin remain 100% clear */}
@@ -123,7 +120,7 @@ export default function Hero() {
             className="flex items-center gap-2.5 text-[10.5px] sm:text-xs font-bold tracking-[0.22em] uppercase text-[#d88918] mb-2.5 sm:mb-3"
           >
             <span className="w-7 sm:w-9 h-[1.5px] bg-[#d88918]" />
-            <span>BUILDING TOMORROW</span>
+            <span>BUILDING TOMORROW</span> 
             <span className="w-7 sm:w-9 h-[1.5px] bg-[#d88918]" />
           </div>
 

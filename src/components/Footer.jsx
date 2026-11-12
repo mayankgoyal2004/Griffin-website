@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Phone, Mail, MapPin, ArrowUp } from 'lucide-react';
 import { companyInfo } from '../data/websiteData';
 
 export default function Footer() {
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,6 +20,38 @@ export default function Footer() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleLink = (e, path, hash) => {
+    e.preventDefault();
+    if (path === '/contact') {
+      if (location.pathname !== '/contact') {
+        navigate('/contact');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (location.pathname !== '/') {
+      navigate('/' + (hash || ''));
+      setTimeout(() => {
+        if (hash) {
+          const el = document.getElementById(hash.replace('#', ''));
+          if (el) el.scrollIntoView({ behavior: 'smooth' });
+          else window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      if (hash) {
+        const el = document.getElementById(hash.replace('#', ''));
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  };
+
   return (
     <footer className="bg-[#142b45] text-[#eaf0f4] pt-12 pb-6 relative">
       <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
@@ -24,7 +59,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-8 pb-10">
           {/* Brand Info */}
           <div className="lg:col-span-4 pr-4">
-            <a href="#home" className="inline-block mb-3 group">
+            <a
+              href="/"
+              onClick={(e) => handleLink(e, '/', '#home')}
+              className="inline-block mb-3 group cursor-pointer"
+            >
               <img
                 src="/logo-light.png"
                 alt="Gryfno Szajka Construction"
@@ -42,11 +81,60 @@ export default function Footer() {
               QUICK LINKS
             </h4>
             <ul className="space-y-2.5 text-xs text-[#c1cfdb]">
-              <li><a href="#home" className="hover:text-[#f2ae38] transition-colors">Home</a></li>
-              <li><a href="#about" className="hover:text-[#f2ae38] transition-colors">About Us</a></li>
-              <li><a href="#services" className="hover:text-[#f2ae38] transition-colors">Services</a></li>
-              <li><a href="#projects" className="hover:text-[#f2ae38] transition-colors">Projects</a></li>
-              <li><a href="#team" className="hover:text-[#f2ae38] transition-colors">Our Team</a></li>
+              <li>
+                <a
+                  href="/#home"
+                  onClick={(e) => handleLink(e, '/', '#home')}
+                  className="hover:text-[#f2ae38] transition-colors cursor-pointer"
+                >
+                  Home
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/#about"
+                  onClick={(e) => handleLink(e, '/', '#about')}
+                  className="hover:text-[#f2ae38] transition-colors cursor-pointer"
+                >
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/#services"
+                  onClick={(e) => handleLink(e, '/', '#services')}
+                  className="hover:text-[#f2ae38] transition-colors cursor-pointer"
+                >
+                  Services
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/#projects"
+                  onClick={(e) => handleLink(e, '/', '#projects')}
+                  className="hover:text-[#f2ae38] transition-colors cursor-pointer"
+                >
+                  Projects
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/#team"
+                  onClick={(e) => handleLink(e, '/', '#team')}
+                  className="hover:text-[#f2ae38] transition-colors cursor-pointer"
+                >
+                  Our Team
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/contact"
+                  onClick={(e) => handleLink(e, '/contact', '')}
+                  className="hover:text-[#f2ae38] transition-colors font-semibold text-[#f2ae38] cursor-pointer"
+                >
+                  Contact Us
+                </a>
+              </li>
             </ul>
           </div>
 

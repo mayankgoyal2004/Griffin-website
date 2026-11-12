@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Phone,
   Menu,
@@ -15,15 +16,24 @@ import {
 import { companyInfo } from '../data/websiteData';
 
 export default function Header() {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isContactPage = location.pathname === '/contact';
+
   const [isSticky, setIsSticky] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
+    if (isContactPage) {
+      setActiveSection('contact');
+      return;
+    }
+
     const handleScroll = () => {
       setIsSticky(window.scrollY > 30);
 
-      const sections = ['home', 'about', 'services', 'projects', 'team', 'contact'];
+      const sections = ['home', 'about', 'services', 'projects', 'team'];
       const scrollPos = window.scrollY + 180;
 
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -37,7 +47,7 @@ export default function Header() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isContactPage]);
 
   const navLinks = [
     { label: 'Home', href: '#home', id: 'home', icon: Home },
@@ -46,21 +56,65 @@ export default function Header() {
     { label: 'Projects', href: '#projects', id: 'projects', icon: Building2 },
     { label: 'Team', href: '#team', id: 'team', icon: Users },
     { label: 'Blog', href: '#advantage', id: 'blog', icon: FileEdit },
-    { label: 'Contact', href: '#contact', id: 'contact', icon: Mail },
+    { label: 'Contact', href: '/contact', id: 'contact', icon: Mail },
   ];
+
+  const handleNavClick = (e, link) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+
+    if (link.id === 'contact') {
+      if (location.pathname !== '/contact') {
+        navigate('/contact');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    if (location.pathname !== '/') {
+      navigate('/#' + link.id);
+      setTimeout(() => {
+        const el = document.getElementById(link.id);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+        else window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
+    } else {
+      const el = document.getElementById(link.id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  };
+
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    setMobileMenuOpen(false);
+    if (location.pathname !== '/') {
+      navigate('/');
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 w-full h-[68px] z-50 transition-all duration-300 flex items-center ${
-          isSticky
+          isContactPage
+            ? 'bg-[#06111e] border-b border-white/10'
+            : isSticky
             ? 'bg-[#06111e]/92 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.6)] border-b border-white/10'
             : 'bg-gradient-to-b from-[#030914]/85 via-[#030914]/45 to-transparent backdrop-blur-[1.5px]'
         }`}
       >
         <div className="max-w-[1280px] w-full mx-auto px-5 sm:px-8 flex items-center justify-between gap-4">
           {/* Brand Logo: Gryfno Szajka 3 Griffins Logo */}
-          <a href="#home" className="flex items-center group shrink-0">
+          <a
+            href="/"
+            onClick={handleLogoClick}
+            className="flex items-center group shrink-0 cursor-pointer"
+          >
             <img
               src="/logo.png"
               alt="Gryfno Szajka"
@@ -68,7 +122,7 @@ export default function Header() {
             />
           </a>
 
-          {/* Desktop Nav Links with Stacked Icons - Clean, natural overlay */}
+          {/* Desktop Nav Links with Stacked Icons */}
           <nav className="hidden lg:flex items-center gap-6 xl:gap-8 whitespace-nowrap">
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
@@ -77,7 +131,8 @@ export default function Header() {
                 <a
                   key={link.id}
                   href={link.href}
-                  className={`group relative flex flex-col items-center justify-center gap-1 py-1 px-1.5 transition-all ${
+                  onClick={(e) => handleNavClick(e, link)}
+                  className={`group relative flex flex-col items-center justify-center gap-1 py-1 px-1.5 transition-all cursor-pointer ${
                     isActive
                       ? 'text-[#f2ae38]'
                       : 'text-white/95 hover:text-[#f2ae38]'
@@ -123,7 +178,7 @@ export default function Header() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-white/90 rounded-lg hover:bg-white/10 transition-colors"
+            className="lg:hidden p-2 text-white/90 rounded-lg hover:bg-white/10 transition-colors cursor-pointer"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -145,7 +200,7 @@ export default function Header() {
                 <span className="text-sm font-bold text-white tracking-widest uppercase">Menu</span>
                 <button
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-1.5 text-white/80 hover:text-white"
+                  className="p-1.5 text-white/80 hover:text-white cursor-pointer"
                   aria-label="Close menu"
                 >
                   <X className="w-5 h-5" />
@@ -160,8 +215,8 @@ export default function Header() {
                     <a
                       key={link.id}
                       href={link.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`flex items-center gap-3.5 px-4 py-3 rounded-xl text-sm font-bold transition-all ${
+                      onClick={(e) => handleNavClick(e, link)}
+                      className={`flex items-center gap-3.5 px-4 py-3 rounded-xl text-sm font-bold transition-all cursor-pointer ${
                         isActive
                           ? 'bg-[#d88918] text-[#071322]'
                           : 'text-white/85 hover:bg-white/5 hover:text-white'

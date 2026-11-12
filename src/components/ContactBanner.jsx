@@ -1,13 +1,15 @@
 import React, { useRef, useEffect } from 'react';
 import { Mail, Phone } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { companyInfo } from '../data/websiteData';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function ContactBanner({ onOpenQuote }) {
+export default function ContactBanner() {
   const bannerRef = useRef(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -26,13 +28,17 @@ export default function ContactBanner({ onOpenQuote }) {
     return () => ctx.revert();
   }, []);
 
+  const handleContactClick = () => {
+    navigate('/contact');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <section
       ref={bannerRef}
-      id="contact"
       className="relative py-12 sm:py-14 text-white overflow-hidden bg-[#122b43]"
       style={{
-        backgroundImage: `linear-gradient(90deg, rgba(8, 24, 43, 0.92) 0%, rgba(18, 43, 67, 0.65) 50%, rgba(8, 24, 43, 0.9) 100%), url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1800&q=85')`,
+        backgroundImage: `linear-gradient(90deg, rgba(8, 24, 43, 0.94) 0%, rgba(18, 43, 67, 0.72) 50%, rgba(8, 24, 43, 0.92) 100%), url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1800&q=85')`,
         backgroundSize: 'cover',
         backgroundPosition: 'center 30%',
       }}
@@ -52,7 +58,7 @@ export default function ContactBanner({ onOpenQuote }) {
           {/* Right Action Buttons matching reference screenshot */}
           <div className="flex flex-wrap items-center gap-3 shrink-0">
             <button
-              onClick={onOpenQuote}
+              onClick={handleContactClick}
               type="button"
               className="group inline-flex items-center gap-2 px-5 py-3 rounded-xl text-xs font-bold text-[#142338] bg-[#ea8b0d] hover:bg-[#ffb03a] shadow-lg hover:shadow-orange-500/25 hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
             >
@@ -61,7 +67,7 @@ export default function ContactBanner({ onOpenQuote }) {
             </button>
 
             <a
-              href={`tel:${companyInfo.phone}`}
+              href={`tel:${companyInfo.phone.replace(/[^0-9+]/g, '')}`}
               className="group inline-flex items-center gap-2 px-5 py-3 rounded-xl text-xs font-bold text-[#142338] bg-[#ea8b0d] hover:bg-[#ffb03a] shadow-lg hover:shadow-orange-500/25 hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
             >
               <Phone className="w-3.5 h-3.5 text-[#142338] transition-transform group-hover:scale-110" />

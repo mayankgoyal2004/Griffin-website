@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -12,6 +13,7 @@ import Projects from './components/Projects';
 import Team from './components/Team';
 import Advantage from './components/Advantage';
 import ContactBanner from './components/ContactBanner';
+import Contact from './components/Contact';
 import Footer from './components/Footer';
 
 import QuoteModal from './components/QuoteModal';
@@ -20,7 +22,24 @@ import ServiceDetailModal from './components/ServiceDetailModal';
 
 gsap.registerPlugin(ScrollTrigger);
 
+function HomePage({ handleOpenQuote, setSelectedService, setSelectedProject }) {
+  return (
+    <>
+      <Hero onOpenQuote={handleOpenQuote} />
+      <Services onSelectService={(srv) => setSelectedService(srv)} />
+      <About onOpenQuote={handleOpenQuote} />
+      <Projects onSelectProject={(prj) => setSelectedProject(prj)} />
+      <Team onOpenQuote={handleOpenQuote} />
+      <Advantage />
+      <ContactBanner />
+    </>
+  );
+}
+
 export default function App() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const [quoteModalOpen, setQuoteModalOpen] = useState(false);
   const [quoteInitialData, setQuoteInitialData] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -49,6 +68,21 @@ export default function App() {
       gsap.ticker.remove(updateTicker);
     };
   }, []);
+
+  // Handle hash-based redirect e.g. #contact -> /contact
+  useEffect(() => {
+    if (window.location.hash === '#contact' || window.location.hash === '#/contact') {
+      navigate('/contact');
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname, navigate]);
+
+  // Scroll to top when switching pages
+  useEffect(() => {
+    if (location.pathname === '/contact') {
+      window.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
 
   const handleOpenQuote = () => {
     setQuoteInitialData(null);
@@ -79,15 +113,31 @@ export default function App() {
       {/* Main Header */}
       <Header onOpenQuote={handleOpenQuote} />
 
-      {/* Main Sections */}
+      {/* Main Pages: Home and Dedicated Contact Us Page */}
       <main className="flex-1">
-        <Hero onOpenQuote={handleOpenQuote} />
-        <Services onSelectService={(srv) => setSelectedService(srv)} />
-        <About onOpenQuote={handleOpenQuote} />
-        <Projects onSelectProject={(prj) => setSelectedProject(prj)} />
-        <Team onOpenQuote={handleOpenQuote} />
-        <Advantage />
-        <ContactBanner onOpenQuote={handleOpenQuote} />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <HomePage
+                handleOpenQuote={handleOpenQuote}
+                setSelectedService={setSelectedService}
+                setSelectedProject={setSelectedProject}
+              />
+            }
+          />
+          <Route path="/contact" element={<Contact />} />
+          <Route
+            path="*"
+            element={
+              <HomePage
+                handleOpenQuote={handleOpenQuote}
+                setSelectedService={setSelectedService}
+                setSelectedProject={setSelectedProject}
+              />
+            }
+          />
+        </Routes>
       </main>
 
       {/* Footer */}
