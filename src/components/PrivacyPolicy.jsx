@@ -1,5 +1,5 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   User,
   Settings,
@@ -12,8 +12,8 @@ import {
   MapPin,
   ChevronRight,
   Lock,
-} from 'lucide-react';
-import { companyInfo } from '../data/websiteData';
+} from "lucide-react";
+import { companyInfo } from "../data/websiteData";
 
 export default function PrivacyPolicy() {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ export default function PrivacyPolicy() {
       if (window.__lenis) {
         window.__lenis.scrollTo(0, { duration: 0.85 });
       } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       }
       return;
     }
@@ -33,30 +33,30 @@ export default function PrivacyPolicy() {
         window.__lenis.scrollTo(0, {
           duration: 0.6,
           onComplete: () => {
-            navigate(path + (hash || ''));
+            navigate(path + (hash || ""));
             window.scrollTo(0, 0);
           },
         });
       } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: "smooth" });
         setTimeout(() => {
-          navigate(path + (hash || ''));
+          navigate(path + (hash || ""));
           window.scrollTo(0, 0);
         }, 500);
       }
     } else {
-      navigate(path + (hash || ''));
+      navigate(path + (hash || ""));
       window.scrollTo(0, 0);
     }
   };
 
   const quickLinks = [
-    { label: 'About Us', path: '/about', hash: '' },
-    { label: 'Services', path: '/', hash: '#services' },
-    { label: 'Projects', path: '/', hash: '#projects' },
-    { label: 'Team', path: '/', hash: '#team' },
-    { label: 'Blog', path: '/blog', hash: '' },
-    { label: 'Contact', path: '/contact', hash: '' },
+    { label: "About Us", path: "/about", hash: "" },
+    { label: "Services", path: "/", hash: "#services" },
+    { label: "Projects", path: "/", hash: "#projects" },
+    { label: "Team", path: "/", hash: "#team" },
+    { label: "Blog", path: "/blog", hash: "" },
+    { label: "Contact", path: "/contact", hash: "" },
   ];
 
   return (
@@ -70,7 +70,7 @@ export default function PrivacyPolicy() {
             alt="Griffin Privacy Policy Banner"
             className="w-full h-full object-cover object-[85%_top] sm:object-[right_top] md:object-[right_top]"
             onError={(e) => {
-              e.currentTarget.src = '/Golden-Riverside-Castle.png';
+              e.currentTarget.src = "/Golden-Riverside-Castle.png";
             }}
           />
         </div>
@@ -80,7 +80,7 @@ export default function PrivacyPolicy() {
           className="absolute inset-0 pointer-events-none md:hidden"
           style={{
             background:
-              'linear-gradient(90deg, rgba(250, 247, 242, 0.95) 0%, rgba(250, 247, 242, 0.85) 55%, rgba(250, 247, 242, 0.4) 100%)',
+              "linear-gradient(90deg, rgba(250, 247, 242, 0.95) 0%, rgba(250, 247, 242, 0.85) 55%, rgba(250, 247, 242, 0.4) 100%)",
           }}
           aria-hidden="true"
         />
@@ -102,7 +102,8 @@ export default function PrivacyPolicy() {
 
             {/* Subtitle */}
             <p className="text-xs sm:text-sm md:text-[15px] text-[#556477] leading-relaxed max-w-[460px]">
-              Your privacy matters to us. This Privacy Policy explains how we collect, use, and protect your information.
+              Your privacy matters to us. This Privacy Policy explains how we
+              collect, use, and protect your information.
             </p>
           </div>
         </div>
@@ -120,7 +121,7 @@ export default function PrivacyPolicy() {
             alt=""
             className="w-full h-auto object-contain object-right-bottom"
             onError={(e) => {
-              e.currentTarget.style.display = 'none';
+              e.currentTarget.style.display = "none";
             }}
           />
         </div>
@@ -140,14 +141,17 @@ export default function PrivacyPolicy() {
                 </h2>
                 <div className="space-y-3 text-xs sm:text-sm text-[#4b5c70] leading-relaxed">
                   <p>
-                    At Griffin Construction, we are committed to protecting your privacy and ensuring that
-                    your personal information is handled in a safe and responsible manner. This Privacy Policy
-                    outlines how we collect, use, store, and protect your data when you visit our website,
-                    interact with our services, or communicate with us.
+                    At Griffin Construction, we are committed to protecting your
+                    privacy and ensuring that your personal information is
+                    handled in a safe and responsible manner. This Privacy
+                    Policy outlines how we collect, use, store, and protect your
+                    data when you visit our website, interact with our services,
+                    or communicate with us.
                   </p>
                   <p>
-                    By using our website, you agree to the terms of this Privacy Policy. If you do not agree
-                    with these terms, please do not use our website.
+                    By using our website, you agree to the terms of this Privacy
+                    Policy. If you do not agree with these terms, please do not
+                    use our website.
                   </p>
                 </div>
               </div>
@@ -165,9 +169,15 @@ export default function PrivacyPolicy() {
                 <div className="pl-0 sm:pl-[54px] text-xs sm:text-sm text-[#4b5c70] leading-relaxed space-y-2.5">
                   <p>We may collect the following types of information:</p>
                   <ul className="list-disc pl-5 space-y-1.5 text-[#556477]">
-                    <li>Personal information (name, email address, phone number, etc.)</li>
+                    <li>
+                      Personal information (name, email address, phone number,
+                      etc.)
+                    </li>
                     <li>Project details and inquiry information</li>
-                    <li>Technical information (IP address, browser type, device information)</li>
+                    <li>
+                      Technical information (IP address, browser type, device
+                      information)
+                    </li>
                     <li>Usage data (pages visited, time spent, etc.)</li>
                   </ul>
                 </div>
@@ -184,11 +194,20 @@ export default function PrivacyPolicy() {
                   </h3>
                 </div>
                 <div className="pl-0 sm:pl-[54px] text-xs sm:text-sm text-[#4b5c70] leading-relaxed space-y-2.5">
-                  <p>We use the information we collect for the following purposes:</p>
+                  <p>
+                    We use the information we collect for the following
+                    purposes:
+                  </p>
                   <ul className="list-disc pl-5 space-y-1.5 text-[#556477]">
-                    <li>To respond to your inquiries and provide requested services</li>
+                    <li>
+                      To respond to your inquiries and provide requested
+                      services
+                    </li>
                     <li>To improve our website and user experience</li>
-                    <li>To send you updates, news, and relevant information (with your consent)</li>
+                    <li>
+                      To send you updates, news, and relevant information (with
+                      your consent)
+                    </li>
                     <li>To comply with legal and regulatory requirements</li>
                   </ul>
                 </div>
@@ -206,9 +225,11 @@ export default function PrivacyPolicy() {
                 </div>
                 <div className="pl-0 sm:pl-[54px] text-xs sm:text-sm text-[#4b5c70] leading-relaxed">
                   <p>
-                    We implement appropriate security measures to protect your personal information
-                    from unauthorized access, alteration, disclosure, or destruction. However, no method
-                    of transmission over the internet or electronic storage is 100% secure.
+                    We implement appropriate security measures to protect your
+                    personal information from unauthorized access, alteration,
+                    disclosure, or destruction. However, no method of
+                    transmission over the internet or electronic storage is 100%
+                    secure.
                   </p>
                 </div>
               </div>
@@ -225,9 +246,10 @@ export default function PrivacyPolicy() {
                 </div>
                 <div className="pl-0 sm:pl-[54px] text-xs sm:text-sm text-[#4b5c70] leading-relaxed">
                   <p>
-                    Our website may use cookies to enhance your browsing experience, analyze site traffic,
-                    and personalize content. You can choose to disable cookies through your browser settings,
-                    but this may affect some features of our website.
+                    Our website may use cookies to enhance your browsing
+                    experience, analyze site traffic, and personalize content.
+                    You can choose to disable cookies through your browser
+                    settings, but this may affect some features of our website.
                   </p>
                 </div>
               </div>
@@ -244,8 +266,9 @@ export default function PrivacyPolicy() {
                 </div>
                 <div className="pl-0 sm:pl-[54px] text-xs sm:text-sm text-[#4b5c70] leading-relaxed">
                   <p>
-                    Our website may contain links to third-party websites. We are not responsible for the
-                    privacy practices or content of these external sites. We encourage you to review their
+                    Our website may contain links to third-party websites. We
+                    are not responsible for the privacy practices or content of
+                    these external sites. We encourage you to review their
                     privacy policies before providing any personal information.
                   </p>
                 </div>
@@ -263,8 +286,9 @@ export default function PrivacyPolicy() {
                 </div>
                 <div className="pl-0 sm:pl-[54px] text-xs sm:text-sm text-[#4b5c70] leading-relaxed">
                   <p>
-                    We may update this Privacy Policy from time to time. Any changes will be posted on
-                    this page with the updated date. Please review this policy periodically to stay informed
+                    We may update this Privacy Policy from time to time. Any
+                    changes will be posted on this page with the updated date.
+                    Please review this policy periodically to stay informed
                     about how we are protecting your information.
                   </p>
                 </div>
@@ -282,7 +306,8 @@ export default function PrivacyPolicy() {
                 </div>
                 <div className="pl-0 sm:pl-[54px] space-y-4">
                   <p className="text-xs sm:text-sm text-[#4b5c70] leading-relaxed">
-                    If you have any questions or concerns about this Privacy Policy, please contact us at:
+                    If you have any questions or concerns about this Privacy
+                    Policy, please contact us at:
                   </p>
                   <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-xs sm:text-sm text-[#0c1f38] font-medium pt-1">
                     <a
@@ -301,7 +326,7 @@ export default function PrivacyPolicy() {
                     </a>
                     <div className="flex items-center gap-2 text-[#556477]">
                       <MapPin className="w-4 h-4 text-[#d88918]" />
-                      <span>Dera Bassi, Punjab, India</span>
+                      <span>Mohali, Punjab, India</span>
                     </div>
                   </div>
                 </div>
@@ -342,7 +367,8 @@ export default function PrivacyPolicy() {
                   Our Priority
                 </h3>
                 <p className="text-xs sm:text-sm text-[#556477] leading-relaxed">
-                  We value your privacy and are committed to keeping your information safe and secure.
+                  We value your privacy and are committed to keeping your
+                  information safe and secure.
                 </p>
               </div>
             </div>
@@ -352,4 +378,3 @@ export default function PrivacyPolicy() {
     </div>
   );
 }
-

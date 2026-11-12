@@ -1,5 +1,5 @@
-import React, { useState, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Home,
   Building2,
@@ -12,145 +12,168 @@ import {
   HardHat,
   Wrench,
   Construction,
-} from 'lucide-react';
-import ProjectDetailModal from './ProjectDetailModal';
+} from "lucide-react";
+import ProjectDetailModal from "./ProjectDetailModal";
 
 export const ALL_PROJECTS = [
   {
-    id: 'maple-villas',
-    title: 'Maple Villas',
-    category: 'Residential',
-    location: 'Mohali, Punjab',
-    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80',
-    description: 'A premium residential community with modern architecture and sustainable living.',
-    scope: 'Architectural Design & Turnkey Construction',
-    duration: '18 Months',
+    id: "maple-villas",
+    title: "Maple Villas",
+    category: "Residential",
+    location: "Mohali, Punjab",
+    image:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
+    description:
+      "A premium residential community with modern architecture and sustainable living.",
+    scope: "Architectural Design & Turnkey Construction",
+    duration: "18 Months",
     highlights: [
-      'Solar passive architecture with thermal glass envelope',
-      'Private landscaped courtyards and terrace plunge pools',
-      'Pre-certified 4-star Green Building rating',
+      "Solar passive architecture with thermal glass envelope",
+      "Private landscaped courtyards and terrace plunge pools",
+      "Pre-certified 4-star Green Building rating",
     ],
   },
   {
-    id: 'griffin-business-park',
-    title: 'Griffin Business Park',
-    category: 'Commercial',
-    location: 'Chandigarh, Punjab',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80',
-    description: 'A modern commercial space designed for productivity, collaboration, and growth.',
-    scope: 'Commercial Development & Structural Engineering',
-    duration: '24 Months',
+    id: "griffin-business-park",
+    title: "Griffin Business Park",
+    category: "Commercial",
+    location: "Chandigarh, Punjab",
+    image:
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80",
+    description:
+      "A modern commercial space designed for productivity, collaboration, and growth.",
+    scope: "Commercial Development & Structural Engineering",
+    duration: "24 Months",
     highlights: [
-      'Grade-A corporate floorplates with double-glazed low-E glass',
-      'High-speed automated elevators and smart HVAC automation',
-      'Zero-discharge rainwater harvesting and on-site solar generation',
+      "Grade-A corporate floorplates with double-glazed low-E glass",
+      "High-speed automated elevators and smart HVAC automation",
+      "Zero-discharge rainwater harvesting and on-site solar generation",
     ],
   },
   {
-    id: 'dera-bassi-flyover',
-    title: 'Dera Bassi Flyover',
-    category: 'Infrastructure',
-    location: 'Dera Bassi, Punjab',
-    image: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=900&q=80',
-    description: 'A key infrastructure project improving connectivity and regional development.',
-    scope: 'Civil Engineering, Bridge Construction & Roadworks',
-    duration: '16 Months',
+    id: "dera-bassi-flyover",
+    title: "Mohali Flyover",
+    category: "Infrastructure",
+    location: "Mohali, Punjab",
+    image:
+      "https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=900&q=80",
+    description:
+      "A key infrastructure project improving connectivity and regional development.",
+    scope: "Civil Engineering, Bridge Construction & Roadworks",
+    duration: "16 Months",
     highlights: [
-      'High-load pre-stressed concrete girder technology',
-      'Reinforced earth retaining walls with seismic dampers',
-      'Smart LED corridor illumination and anti-skid surfacing',
+      "High-load pre-stressed concrete girder technology",
+      "Reinforced earth retaining walls with seismic dampers",
+      "Smart LED corridor illumination and anti-skid surfacing",
     ],
   },
   {
-    id: 'vibrantick-industrial-unit',
-    title: 'Vibrantick Industrial Unit',
-    category: 'Industrial',
-    location: 'Zirakpur, Punjab',
-    image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80',
-    description: 'A state-of-the-art industrial facility built for efficiency, safety, and scalability.',
-    scope: 'PEB Industrial Sheds & Laser-Screed Flooring',
-    duration: '12 Months',
+    id: "vibrantick-industrial-unit",
+    title: "Vibrantick Industrial Unit",
+    category: "Industrial",
+    location: "Zirakpur, Punjab",
+    image:
+      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80",
+    description:
+      "A state-of-the-art industrial facility built for efficiency, safety, and scalability.",
+    scope: "PEB Industrial Sheds & Laser-Screed Flooring",
+    duration: "12 Months",
     highlights: [
-      'Heavy-duty FM2 compliant industrial floor slabs',
-      'Integrated logistics docks with automated levelers',
-      'Comprehensive fire suppression and FM-global safety norms',
+      "Heavy-duty FM2 compliant industrial floor slabs",
+      "Integrated logistics docks with automated levelers",
+      "Comprehensive fire suppression and FM-global safety norms",
     ],
   },
   {
-    id: 'greenview-residences',
-    title: 'Greenview Residences',
-    category: 'Residential',
-    location: 'Mohali, Punjab',
-    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=900&q=80',
-    description: 'Contemporary apartments with landscaped spaces and modern amenities.',
-    scope: 'Multi-Story Residential Construction',
-    duration: '22 Months',
+    id: "greenview-residences",
+    title: "Greenview Residences",
+    category: "Residential",
+    location: "Mohali, Punjab",
+    image:
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=900&q=80",
+    description:
+      "Contemporary apartments with landscaped spaces and modern amenities.",
+    scope: "Multi-Story Residential Construction",
+    duration: "22 Months",
     highlights: [
-      'Spacious double-height wrap-around balconies',
-      'Central clubhouse, indoor badminton courts, and fitness center',
-      '3-tier biometric security and EV-charging stations per bay',
+      "Spacious double-height wrap-around balconies",
+      "Central clubhouse, indoor badminton courts, and fitness center",
+      "3-tier biometric security and EV-charging stations per bay",
     ],
   },
   {
-    id: 'heritage-restoration',
-    title: 'Heritage Restoration',
-    category: 'Renovation',
-    location: 'Patiala, Punjab',
-    image: 'https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&w=900&q=80',
-    description: 'A careful restoration project that preserves heritage while enhancing functionality.',
-    scope: 'Historical Conservation & Structural Retrofitting',
-    duration: '14 Months',
+    id: "heritage-restoration",
+    title: "Heritage Restoration",
+    category: "Renovation",
+    location: "Patiala, Punjab",
+    image:
+      "https://images.unsplash.com/photo-1582555172866-f73bb12a2ab3?auto=format&fit=crop&w=900&q=80",
+    description:
+      "A careful restoration project that preserves heritage while enhancing functionality.",
+    scope: "Historical Conservation & Structural Retrofitting",
+    duration: "14 Months",
     highlights: [
-      'Traditional lime-plaster mortar restoration methods',
-      'Invisible steel structural reinforcement and foundation underpinning',
-      'Preservation of ornate cornices, archways, and sandstone carvings',
+      "Traditional lime-plaster mortar restoration methods",
+      "Invisible steel structural reinforcement and foundation underpinning",
+      "Preservation of ornate cornices, archways, and sandstone carvings",
     ],
   },
   // Additional projects revealed on "Load More"
   {
-    id: 'skyline-corporate-hub',
-    title: 'Skyline Corporate Hub',
-    category: 'Commercial',
-    location: 'Panchkula, Haryana',
-    image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80',
-    description: 'LEED-certified multi-tenant commercial office towers with retail podiums.',
-    scope: 'Turnkey Commercial Project',
-    duration: '20 Months',
-    highlights: ['Solar facade integration', 'Sub-metered chilled water cooling', 'Dedicated transit hub connection'],
+    id: "skyline-corporate-hub",
+    title: "Skyline Corporate Hub",
+    category: "Commercial",
+    location: "Panchkula, Haryana",
+    image:
+      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80",
+    description:
+      "LEED-certified multi-tenant commercial office towers with retail podiums.",
+    scope: "Turnkey Commercial Project",
+    duration: "20 Months",
+    highlights: [
+      "Solar facade integration",
+      "Sub-metered chilled water cooling",
+      "Dedicated transit hub connection",
+    ],
   },
   {
-    id: 'riverdale-luxury-estates',
-    title: 'Riverdale Luxury Estates',
-    category: 'Residential',
-    location: 'Kalka Road, Punjab',
-    image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80',
-    description: 'Gated enclave of 36 bespoke river-facing modern villas.',
-    scope: 'Full Villa Development & Infrastructure',
-    duration: '16 Months',
-    highlights: ['Natural stone facades', 'Smart home automation', 'Waterfront promenade'],
+    id: "riverdale-luxury-estates",
+    title: "Riverdale Luxury Estates",
+    category: "Residential",
+    location: "Kalka Road, Punjab",
+    image:
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80",
+    description: "Gated enclave of 36 bespoke river-facing modern villas.",
+    scope: "Full Villa Development & Infrastructure",
+    duration: "16 Months",
+    highlights: [
+      "Natural stone facades",
+      "Smart home automation",
+      "Waterfront promenade",
+    ],
   },
 ];
 
 const CATEGORIES = [
-  { id: 'all', label: 'All Projects' },
-  { id: 'residential', label: 'Residential', icon: Home },
-  { id: 'commercial', label: 'Commercial', icon: Building2 },
-  { id: 'industrial', label: 'Industrial', icon: Factory },
-  { id: 'infrastructure', label: 'Infrastructure', icon: Construction },
-  { id: 'renovation', label: 'Renovation', icon: Wrench },
+  { id: "all", label: "All Projects" },
+  { id: "residential", label: "Residential", icon: Home },
+  { id: "commercial", label: "Commercial", icon: Building2 },
+  { id: "industrial", label: "Industrial", icon: Factory },
+  { id: "infrastructure", label: "Infrastructure", icon: Construction },
+  { id: "renovation", label: "Renovation", icon: Wrench },
 ];
 
 export default function ProjectsPage({ onSelectProject, onOpenQuote }) {
   const navigate = useNavigate();
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [activeCategory, setActiveCategory] = useState("all");
   const [visibleCount, setVisibleCount] = useState(6);
   const [selectedModalProject, setSelectedModalProject] = useState(null);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
 
   const filteredProjects = useMemo(() => {
-    if (activeCategory === 'all') return ALL_PROJECTS;
+    if (activeCategory === "all") return ALL_PROJECTS;
     return ALL_PROJECTS.filter(
-      (p) => p.category.toLowerCase() === activeCategory.toLowerCase()
+      (p) => p.category.toLowerCase() === activeCategory.toLowerCase(),
     );
   }, [activeCategory]);
 
@@ -174,7 +197,7 @@ export default function ProjectsPage({ onSelectProject, onOpenQuote }) {
   };
 
   const handleContactClick = () => {
-    navigate('/contact');
+    navigate("/contact");
     window.scrollTo(0, 0);
   };
 
@@ -189,7 +212,7 @@ export default function ProjectsPage({ onSelectProject, onOpenQuote }) {
             alt="Griffin Projects Banner"
             className="w-full h-full object-cover object-[85%_top] sm:object-[right_top] md:object-[right_top]"
             onError={(e) => {
-              e.currentTarget.src = '/Golden-Riverside-Castle.png';
+              e.currentTarget.src = "/Golden-Riverside-Castle.png";
             }}
           />
         </div>
@@ -199,7 +222,7 @@ export default function ProjectsPage({ onSelectProject, onOpenQuote }) {
           className="absolute inset-0 pointer-events-none md:hidden"
           style={{
             background:
-              'linear-gradient(90deg, rgba(250, 247, 242, 0.95) 0%, rgba(250, 247, 242, 0.85) 55%, rgba(250, 247, 242, 0.4) 100%)',
+              "linear-gradient(90deg, rgba(250, 247, 242, 0.95) 0%, rgba(250, 247, 242, 0.85) 55%, rgba(250, 247, 242, 0.4) 100%)",
           }}
           aria-hidden="true"
         />
@@ -221,7 +244,8 @@ export default function ProjectsPage({ onSelectProject, onOpenQuote }) {
 
             {/* Subtitle */}
             <p className="text-xs sm:text-sm md:text-[15px] text-[#556477] leading-relaxed max-w-[440px]">
-              A showcase of our work, reflecting our commitment to quality, innovation, and lasting value.
+              A showcase of our work, reflecting our commitment to quality,
+              innovation, and lasting value.
             </p>
           </div>
         </div>
@@ -243,11 +267,15 @@ export default function ProjectsPage({ onSelectProject, onOpenQuote }) {
                 }}
                 className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-[13px] font-semibold whitespace-nowrap transition-all duration-200 flex items-center gap-2 cursor-pointer shadow-xs ${
                   isActive
-                    ? 'bg-[#d88918] text-white shadow-md'
-                    : 'bg-[#f4efe6] text-[#425265] hover:bg-[#ece4d6] hover:text-[#0c1f38]'
+                    ? "bg-[#d88918] text-white shadow-md"
+                    : "bg-[#f4efe6] text-[#425265] hover:bg-[#ece4d6] hover:text-[#0c1f38]"
                 }`}
               >
-                {Icon && <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-[#8d9cae]'}`} />}
+                {Icon && (
+                  <Icon
+                    className={`w-3.5 h-3.5 ${isActive ? "text-white" : "text-[#8d9cae]"}`}
+                  />
+                )}
                 <span>{cat.label}</span>
               </button>
             );
@@ -260,7 +288,7 @@ export default function ProjectsPage({ onSelectProject, onOpenQuote }) {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
           {displayedProjects.map((project) => {
             const catObj = CATEGORIES.find(
-              (c) => c.label.toLowerCase() === project.category.toLowerCase()
+              (c) => c.label.toLowerCase() === project.category.toLowerCase(),
             );
             const CatIcon = catObj?.icon || Building2;
 
@@ -280,7 +308,7 @@ export default function ProjectsPage({ onSelectProject, onOpenQuote }) {
                       loading="lazy"
                       onError={(e) => {
                         e.currentTarget.src =
-                          'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80';
+                          "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80";
                       }}
                     />
 
@@ -332,8 +360,12 @@ export default function ProjectsPage({ onSelectProject, onOpenQuote }) {
               disabled={isLoadingMore}
               className="inline-flex items-center gap-2 border border-[#d88918] text-[#0c1f38] hover:bg-[#d88918] hover:text-white font-semibold text-xs sm:text-sm px-7 py-2.5 rounded-full transition-all duration-200 shadow-xs cursor-pointer active:scale-95"
             >
-              <span>{isLoadingMore ? 'Loading Projects...' : 'Load More Projects'}</span>
-              <RotateCw className={`w-3.5 h-3.5 text-[#d88918] group-hover:text-white ${isLoadingMore ? 'animate-spin' : ''}`} />
+              <span>
+                {isLoadingMore ? "Loading Projects..." : "Load More Projects"}
+              </span>
+              <RotateCw
+                className={`w-3.5 h-3.5 text-[#d88918] group-hover:text-white ${isLoadingMore ? "animate-spin" : ""}`}
+              />
             </button>
           </div>
         )}
@@ -405,7 +437,7 @@ export default function ProjectsPage({ onSelectProject, onOpenQuote }) {
               alt="Griffin Architecture"
               className="w-full h-full object-cover object-center"
               onError={(e) => {
-                e.currentTarget.src = '/Golden-Riverside-Castle.png';
+                e.currentTarget.src = "/Golden-Riverside-Castle.png";
               }}
             />
             {/* Shading overlay into the dark banner */}
@@ -449,4 +481,3 @@ export default function ProjectsPage({ onSelectProject, onOpenQuote }) {
     </div>
   );
 }
-

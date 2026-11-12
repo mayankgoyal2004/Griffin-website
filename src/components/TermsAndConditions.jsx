@@ -1,5 +1,5 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Layers,
   HardHat,
@@ -15,14 +15,14 @@ import {
   Handshake,
   ChevronRight,
   ArrowRight,
-} from 'lucide-react';
-import { companyInfo } from '../data/websiteData';
+} from "lucide-react";
+import { companyInfo } from "../data/websiteData";
 
 export default function TermsAndConditions() {
   const navigate = useNavigate();
 
   const handleContactClick = () => {
-    navigate('/contact');
+    navigate("/contact");
     window.scrollTo(0, 0);
   };
 
@@ -33,22 +33,22 @@ export default function TermsAndConditions() {
         window.__lenis.scrollTo(el, { offset: -90, duration: 0.8 });
       } else {
         const y = el.getBoundingClientRect().top + window.pageYOffset - 90;
-        window.scrollTo({ top: y, behavior: 'smooth' });
+        window.scrollTo({ top: y, behavior: "smooth" });
       }
     }
   };
 
   const sectionsList = [
-    { id: 'introduction', label: 'Introduction' },
-    { id: 'use-of-website', label: 'Use of the Website' },
-    { id: 'services', label: 'Services' },
-    { id: 'intellectual-property', label: 'Intellectual Property' },
-    { id: 'user-submissions', label: 'User Submissions' },
-    { id: 'third-party-links', label: 'Third-Party Links' },
-    { id: 'disclaimer', label: 'Disclaimer' },
-    { id: 'limitation-of-liability', label: 'Limitation of Liability' },
-    { id: 'changes-to-terms', label: 'Changes to These Terms' },
-    { id: 'contact-us', label: 'Contact Us' },
+    { id: "introduction", label: "Introduction" },
+    { id: "use-of-website", label: "Use of the Website" },
+    { id: "services", label: "Services" },
+    { id: "intellectual-property", label: "Intellectual Property" },
+    { id: "user-submissions", label: "User Submissions" },
+    { id: "third-party-links", label: "Third-Party Links" },
+    { id: "disclaimer", label: "Disclaimer" },
+    { id: "limitation-of-liability", label: "Limitation of Liability" },
+    { id: "changes-to-terms", label: "Changes to These Terms" },
+    { id: "contact-us", label: "Contact Us" },
   ];
 
   return (
@@ -62,7 +62,7 @@ export default function TermsAndConditions() {
             alt="Griffin Terms and Conditions Banner"
             className="w-full h-full object-cover object-[85%_top] sm:object-[right_top] md:object-[right_top]"
             onError={(e) => {
-              e.currentTarget.src = '/Golden-Riverside-Castle.png';
+              e.currentTarget.src = "/Golden-Riverside-Castle.png";
             }}
           />
         </div>
@@ -72,7 +72,7 @@ export default function TermsAndConditions() {
           className="absolute inset-0 pointer-events-none md:hidden"
           style={{
             background:
-              'linear-gradient(90deg, rgba(250, 247, 242, 0.95) 0%, rgba(250, 247, 242, 0.85) 55%, rgba(250, 247, 242, 0.4) 100%)',
+              "linear-gradient(90deg, rgba(250, 247, 242, 0.95) 0%, rgba(250, 247, 242, 0.85) 55%, rgba(250, 247, 242, 0.4) 100%)",
           }}
           aria-hidden="true"
         />
@@ -94,7 +94,8 @@ export default function TermsAndConditions() {
 
             {/* Subtitle */}
             <p className="text-xs sm:text-sm md:text-[15px] text-[#556477] leading-relaxed max-w-[480px]">
-              Please read these Terms &amp; Conditions carefully before using our website and services.
+              Please read these Terms &amp; Conditions carefully before using
+              our website and services.
             </p>
           </div>
         </div>
@@ -112,7 +113,7 @@ export default function TermsAndConditions() {
             alt=""
             className="w-full h-auto object-contain object-right-bottom"
             onError={(e) => {
-              e.currentTarget.style.display = 'none';
+              e.currentTarget.style.display = "none";
             }}
           />
         </div>
@@ -132,10 +133,13 @@ export default function TermsAndConditions() {
                 </h2>
                 <div className="space-y-3 text-xs sm:text-sm text-[#4b5c70] leading-relaxed">
                   <p>
-                    These Terms &amp; Conditions (&ldquo;Terms&rdquo;) govern your use of the Griffin Construction
-                    website (&ldquo;Website&rdquo;) and the services, information, and content provided by Griffin
-                    Construction (&ldquo;Company&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo;, &ldquo;us&rdquo;).
-                    By accessing or using our Website, you agree to be bound by these Terms.
+                    These Terms &amp; Conditions (&ldquo;Terms&rdquo;) govern
+                    your use of the Griffin Construction website
+                    (&ldquo;Website&rdquo;) and the services, information, and
+                    content provided by Griffin Construction
+                    (&ldquo;Company&rdquo;, &ldquo;we&rdquo;, &ldquo;our&rdquo;,
+                    &ldquo;us&rdquo;). By accessing or using our Website, you
+                    agree to be bound by these Terms.
                   </p>
                 </div>
               </div>
@@ -152,8 +156,9 @@ export default function TermsAndConditions() {
                 </div>
                 <div className="pl-0 sm:pl-[54px] text-xs sm:text-sm text-[#4b5c70] leading-relaxed">
                   <p>
-                    You agree to use the Website only for lawful purposes and in a manner that does not infringe
-                    the rights of, restrict, or inhibit anyone else&rsquo;s use of the Website.
+                    You agree to use the Website only for lawful purposes and in
+                    a manner that does not infringe the rights of, restrict, or
+                    inhibit anyone else&rsquo;s use of the Website.
                   </p>
                 </div>
               </div>
@@ -170,9 +175,10 @@ export default function TermsAndConditions() {
                 </div>
                 <div className="pl-0 sm:pl-[54px] text-xs sm:text-sm text-[#4b5c70] leading-relaxed">
                   <p>
-                    Griffin Construction provides construction, real estate development, and related services.
-                    The information on the Website is for general informational purposes only and does not
-                    constitute a binding offer or contract.
+                    Griffin Construction provides construction, real estate
+                    development, and related services. The information on the
+                    Website is for general informational purposes only and does
+                    not constitute a binding offer or contract.
                   </p>
                 </div>
               </div>
@@ -189,9 +195,11 @@ export default function TermsAndConditions() {
                 </div>
                 <div className="pl-0 sm:pl-[54px] text-xs sm:text-sm text-[#4b5c70] leading-relaxed">
                   <p>
-                    All content on this Website, including text, images, logos, graphics, and design, is the property
-                    of Griffin Construction or its licensors and is protected by applicable copyright, trademark,
-                    and intellectual property laws. You may not reproduce, distribute, or use any content without
+                    All content on this Website, including text, images, logos,
+                    graphics, and design, is the property of Griffin
+                    Construction or its licensors and is protected by applicable
+                    copyright, trademark, and intellectual property laws. You
+                    may not reproduce, distribute, or use any content without
                     prior written permission.
                   </p>
                 </div>
@@ -209,9 +217,11 @@ export default function TermsAndConditions() {
                 </div>
                 <div className="pl-0 sm:pl-[54px] text-xs sm:text-sm text-[#4b5c70] leading-relaxed">
                   <p>
-                    If you submit any inquiry, feedback, or information through our contact forms, you agree that
-                    the information you provide is accurate and complete. We may use this information to respond
-                    to your inquiry and provide relevant services.
+                    If you submit any inquiry, feedback, or information through
+                    our contact forms, you agree that the information you
+                    provide is accurate and complete. We may use this
+                    information to respond to your inquiry and provide relevant
+                    services.
                   </p>
                 </div>
               </div>
@@ -228,8 +238,9 @@ export default function TermsAndConditions() {
                 </div>
                 <div className="pl-0 sm:pl-[54px] text-xs sm:text-sm text-[#4b5c70] leading-relaxed">
                   <p>
-                    Our Website may contain links to third-party websites for your convenience. We are not
-                    responsible for the content, policies, or practices of these external websites.
+                    Our Website may contain links to third-party websites for
+                    your convenience. We are not responsible for the content,
+                    policies, or practices of these external websites.
                   </p>
                 </div>
               </div>
@@ -246,9 +257,11 @@ export default function TermsAndConditions() {
                 </div>
                 <div className="pl-0 sm:pl-[54px] text-xs sm:text-sm text-[#4b5c70] leading-relaxed">
                   <p>
-                    The information on this Website is provided &ldquo;as is&rdquo; and &ldquo;as available.&rdquo;
-                    While we strive to keep the information accurate and up to date, we make no warranties,
-                    express or implied, regarding the completeness, accuracy, or reliability of any content.
+                    The information on this Website is provided &ldquo;as
+                    is&rdquo; and &ldquo;as available.&rdquo; While we strive to
+                    keep the information accurate and up to date, we make no
+                    warranties, express or implied, regarding the completeness,
+                    accuracy, or reliability of any content.
                   </p>
                 </div>
               </div>
@@ -265,8 +278,10 @@ export default function TermsAndConditions() {
                 </div>
                 <div className="pl-0 sm:pl-[54px] text-xs sm:text-sm text-[#4b5c70] leading-relaxed">
                   <p>
-                    To the fullest extent permitted by law, Griffin Construction shall not be liable for any direct,
-                    indirect, incidental, or consequential damages arising from your use of the Website or our services.
+                    To the fullest extent permitted by law, Griffin Construction
+                    shall not be liable for any direct, indirect, incidental, or
+                    consequential damages arising from your use of the Website
+                    or our services.
                   </p>
                 </div>
               </div>
@@ -283,15 +298,20 @@ export default function TermsAndConditions() {
                 </div>
                 <div className="pl-0 sm:pl-[54px] text-xs sm:text-sm text-[#4b5c70] leading-relaxed">
                   <p>
-                    We may update these Terms from time to time. Any changes will be posted on this page with the
-                    updated &ldquo;Last Updated&rdquo; date. Your continued use of the Website after such changes
-                    constitutes your acceptance of the revised Terms.
+                    We may update these Terms from time to time. Any changes
+                    will be posted on this page with the updated &ldquo;Last
+                    Updated&rdquo; date. Your continued use of the Website after
+                    such changes constitutes your acceptance of the revised
+                    Terms.
                   </p>
                 </div>
               </div>
 
               {/* 10. Contact Us */}
-              <div id="contact-us" className="scroll-mt-24 pt-2 border-t border-[#ece4d6] pt-8">
+              <div
+                id="contact-us"
+                className="scroll-mt-24 pt-2 border-t border-[#ece4d6] pt-8"
+              >
                 <div className="flex items-center gap-3.5 mb-3">
                   <div className="w-10 h-10 rounded-xl bg-[#faebd7]/80 flex items-center justify-center text-[#d88918] shrink-0 shadow-xs">
                     <Mail className="w-5 h-5 stroke-[2]" />
@@ -302,7 +322,8 @@ export default function TermsAndConditions() {
                 </div>
                 <div className="pl-0 sm:pl-[54px] space-y-4">
                   <p className="text-xs sm:text-sm text-[#4b5c70] leading-relaxed">
-                    If you have any questions about these Terms &amp; Conditions, please contact us:
+                    If you have any questions about these Terms &amp;
+                    Conditions, please contact us:
                   </p>
                   <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-xs sm:text-sm text-[#0c1f38] font-medium pt-1">
                     <a
@@ -321,7 +342,7 @@ export default function TermsAndConditions() {
                     </a>
                     <div className="flex items-center gap-2 text-[#556477]">
                       <MapPin className="w-4 h-4 text-[#d88918]" />
-                      <span>Dera Bassi, Punjab, India</span>
+                      <span>Mohali, Punjab, India</span>
                     </div>
                   </div>
                 </div>
@@ -360,7 +381,8 @@ export default function TermsAndConditions() {
                   Have Questions?
                 </h3>
                 <p className="text-xs sm:text-sm text-[#556477] leading-relaxed mb-5">
-                  If you need any clarification about our Terms &amp; Conditions, feel free to reach out to our team.
+                  If you need any clarification about our Terms &amp;
+                  Conditions, feel free to reach out to our team.
                 </p>
                 <button
                   type="button"
@@ -378,4 +400,3 @@ export default function TermsAndConditions() {
     </div>
   );
 }
-

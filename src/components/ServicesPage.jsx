@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import {
   Home,
   Truck,
@@ -24,401 +24,509 @@ import {
   Rocket,
   Search,
   Check,
-} from 'lucide-react';
+} from "lucide-react";
 
 export const SERVICES_CONFIG = {
-  'real-estate': {
-    id: 'real-estate',
-    slug: 'real-estate',
-    title: 'Real Estate Development',
-    tagline: 'End-to-end property development with modern design, sustainable planning, and long-term value creation.',
-    heroCharacter: '/services/real-estate.png',
-    badge: 'Property & Development',
-    badgeBg: '#ea580c',
+  "real-estate": {
+    id: "real-estate",
+    slug: "real-estate",
+    title: "Real Estate Development",
+    tagline:
+      "End-to-end property development with modern design, sustainable planning, and long-term value creation.",
+    heroCharacter: "/services/real-estate.png",
+    badge: "Property & Development",
+    badgeBg: "#ea580c",
     icon: Home,
     overview: {
-      title: 'Creating Landmark Properties',
+      title: "Creating Landmark Properties",
       description:
-        'Griffin Construction delivers comprehensive real estate development solutions, from land acquisition and project planning to design, construction, and final handover. We create high-quality residential and commercial spaces that offer lasting value, strong returns, and modern living experiences.',
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80',
+        "Griffin Construction delivers comprehensive real estate development solutions, from land acquisition and project planning to design, construction, and final handover. We create high-quality residential and commercial spaces that offer lasting value, strong returns, and modern living experiences.",
+      image:
+        "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=80",
       badges: [
-        { label: 'Residential Projects', icon: Home },
-        { label: 'Commercial Spaces', icon: Building2 },
-        { label: 'Land Development', icon: Layers },
-        { label: 'Investment Solutions', icon: Sparkles },
+        { label: "Residential Projects", icon: Home },
+        { label: "Commercial Spaces", icon: Building2 },
+        { label: "Land Development", icon: Layers },
+        { label: "Investment Solutions", icon: Sparkles },
       ],
     },
     offerings: [
       {
-        title: 'Residential Development',
-        desc: 'Modern, well-planned residential communities with premium amenities.',
+        title: "Residential Development",
+        desc: "Modern, well-planned residential communities with premium amenities.",
         icon: Home,
       },
       {
-        title: 'Commercial Development',
-        desc: 'High-quality commercial spaces designed for business growth.',
+        title: "Commercial Development",
+        desc: "High-quality commercial spaces designed for business growth.",
         icon: Building2,
       },
       {
-        title: 'Property Investment',
-        desc: 'Strategic investment opportunities with long-term value.',
+        title: "Property Investment",
+        desc: "Strategic investment opportunities with long-term value.",
         icon: Sparkles,
       },
       {
-        title: 'Land Development',
-        desc: 'Land acquisition, planning, and infrastructure development.',
+        title: "Land Development",
+        desc: "Land acquisition, planning, and infrastructure development.",
         icon: Layers,
       },
     ],
     process: {
-      title: 'Our Development Process',
+      title: "Our Development Process",
       steps: [
-        { num: '01', title: 'Consultation', desc: 'Understand your goals, requirements, and vision.', icon: Compass },
-        { num: '02', title: 'Planning', desc: 'Feasibility, design, and regulatory approvals.', icon: FileText },
-        { num: '03', title: 'Development', desc: 'Quality construction with strict controls.', icon: HardHat },
-        { num: '04', title: 'Handover', desc: 'Final inspection and project delivery.', icon: CheckCircle2 },
+        {
+          num: "01",
+          title: "Consultation",
+          desc: "Understand your goals, requirements, and vision.",
+          icon: Compass,
+        },
+        {
+          num: "02",
+          title: "Planning",
+          desc: "Feasibility, design, and regulatory approvals.",
+          icon: FileText,
+        },
+        {
+          num: "03",
+          title: "Development",
+          desc: "Quality construction with strict controls.",
+          icon: HardHat,
+        },
+        {
+          num: "04",
+          title: "Handover",
+          desc: "Final inspection and project delivery.",
+          icon: CheckCircle2,
+        },
       ],
     },
     advantage: {
-      description: 'A trusted partner in real estate development, known for quality, transparency, and long-term value.',
+      description:
+        "A trusted partner in real estate development, known for quality, transparency, and long-term value.",
       points: [
-        'End-to-end project execution',
-        'Experienced and skilled team',
-        'Quality construction and materials',
-        'Transparent and reliable processes',
-        'Focus on sustainability and value',
+        "End-to-end project execution",
+        "Experienced and skilled team",
+        "Quality construction and materials",
+        "Transparent and reliable processes",
+        "Focus on sustainability and value",
       ],
-      image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=900&q=80',
+      image:
+        "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=900&q=80",
     },
     relatedProjects: [
       {
-        title: 'Maple Villas',
-        location: 'Mohali, Punjab',
-        image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80',
+        title: "Maple Villas",
+        location: "Mohali, Punjab",
+        image:
+          "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80",
       },
       {
-        title: 'Greenview Residences',
-        location: 'Mohali, Punjab',
-        image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80',
+        title: "Greenview Residences",
+        location: "Mohali, Punjab",
+        image:
+          "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80",
       },
       {
-        title: 'Griffin Business Park',
-        location: 'Chandigarh, Punjab',
-        image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+        title: "Griffin Business Park",
+        location: "Chandigarh, Punjab",
+        image:
+          "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
       },
     ],
     faqs: [
       {
-        q: 'What types of real estate projects do you develop?',
-        a: 'We develop bespoke luxury villas, modern residential multi-family apartments, grade-A commercial office parks, retail centers, and integrated mixed-use townships.',
+        q: "What types of real estate projects do you develop?",
+        a: "We develop bespoke luxury villas, modern residential multi-family apartments, grade-A commercial office parks, retail centers, and integrated mixed-use townships.",
       },
       {
-        q: 'Do you handle regulatory approvals and permits?',
-        a: 'Yes, our experienced in-house legal and liaison department manages complete master-plan zoning clearances, municipal building sanctions, environmental clearances, and RERA compliance.',
+        q: "Do you handle regulatory approvals and permits?",
+        a: "Yes, our experienced in-house legal and liaison department manages complete master-plan zoning clearances, municipal building sanctions, environmental clearances, and RERA compliance.",
       },
       {
-        q: 'Can you assist with land acquisition?',
-        a: 'Yes, we provide end-to-end land evaluation, title searches, zoning verification, feasibility studies, and legal diligence to assist partners and investors with prime land procurement.',
+        q: "Can you assist with land acquisition?",
+        a: "Yes, we provide end-to-end land evaluation, title searches, zoning verification, feasibility studies, and legal diligence to assist partners and investors with prime land procurement.",
       },
       {
-        q: 'How do you ensure construction quality?',
-        a: 'We implement rigorous multi-stage quality audits, deploy certified structural engineers, conduct third-party laboratory material testing, and maintain ISO-certified construction protocols.',
+        q: "How do you ensure construction quality?",
+        a: "We implement rigorous multi-stage quality audits, deploy certified structural engineers, conduct third-party laboratory material testing, and maintain ISO-certified construction protocols.",
       },
     ],
   },
   transport: {
-    id: 'transport',
-    slug: 'transport',
-    title: 'Transport & Logistics',
-    tagline: 'Reliable and efficient transport and logistics solutions for the construction, real estate, and industrial sectors.',
-    heroCharacter: '/services/transport.png',
-    badge: 'Fleet & Logistics',
-    badgeBg: '#0a2540',
+    id: "transport",
+    slug: "transport",
+    title: "Transport & Logistics",
+    tagline:
+      "Reliable and efficient transport and logistics solutions for the construction, real estate, and industrial sectors.",
+    heroCharacter: "/services/transport.png",
+    badge: "Fleet & Logistics",
+    badgeBg: "#0a2540",
     icon: Truck,
     overview: {
-      title: 'End-to-End Logistics Support',
+      title: "End-to-End Logistics Support",
       description:
-        'We provide integrated transport and logistics solutions tailored for construction, real estate, and infrastructure projects. From material transportation to on-site delivery, our services ensure timely, safe, and cost-effective movement of goods.',
-      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80',
+        "We provide integrated transport and logistics solutions tailored for construction, real estate, and infrastructure projects. From material transportation to on-site delivery, our services ensure timely, safe, and cost-effective movement of goods.",
+      image:
+        "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=900&q=80",
       badges: [
-        { label: 'Material Transportation', icon: Truck },
-        { label: 'Warehousing & Storage', icon: Building2 },
-        { label: 'On-Site Logistics', icon: Layers },
-        { label: 'Fleet Management', icon: MapPin },
+        { label: "Material Transportation", icon: Truck },
+        { label: "Warehousing & Storage", icon: Building2 },
+        { label: "On-Site Logistics", icon: Layers },
+        { label: "Fleet Management", icon: MapPin },
       ],
     },
     offerings: [
       {
-        title: 'Material Transportation',
-        desc: 'Safe and timely transport of construction materials, equipment, and project goods.',
+        title: "Material Transportation",
+        desc: "Safe and timely transport of construction materials, equipment, and project goods.",
         icon: Truck,
       },
       {
-        title: 'Fleet & Logistics Management',
-        desc: 'A well-maintained fleet with end-to-end logistics planning and coordination.',
+        title: "Fleet & Logistics Management",
+        desc: "A well-maintained fleet with end-to-end logistics planning and coordination.",
         icon: Building2,
       },
       {
-        title: 'Warehousing Solutions',
-        desc: 'Secure, organized, and scalable storage for construction and industrial materials.',
+        title: "Warehousing Solutions",
+        desc: "Secure, organized, and scalable storage for construction and industrial materials.",
         icon: Layers,
       },
       {
-        title: 'On-Site Material Handling',
-        desc: 'Efficient loading, unloading, and material movement at project sites.',
+        title: "On-Site Material Handling",
+        desc: "Efficient loading, unloading, and material movement at project sites.",
         icon: Wrench,
       },
     ],
     process: {
-      title: 'Our Logistics Process',
+      title: "Our Logistics Process",
       steps: [
-        { num: '01', title: 'Requirement Analysis', desc: 'Understand material, volume, and delivery needs.', icon: FileText },
-        { num: '02', title: 'Planning & Scheduling', desc: 'Create the most efficient transport and logistics plan.', icon: MapPin },
-        { num: '03', title: 'Execution', desc: 'Safe, timely, and coordinated movement of goods.', icon: Truck },
-        { num: '04', title: 'Delivery & Support', desc: 'On-time delivery with ongoing project support.', icon: CheckCircle2 },
+        {
+          num: "01",
+          title: "Requirement Analysis",
+          desc: "Understand material, volume, and delivery needs.",
+          icon: FileText,
+        },
+        {
+          num: "02",
+          title: "Planning & Scheduling",
+          desc: "Create the most efficient transport and logistics plan.",
+          icon: MapPin,
+        },
+        {
+          num: "03",
+          title: "Execution",
+          desc: "Safe, timely, and coordinated movement of goods.",
+          icon: Truck,
+        },
+        {
+          num: "04",
+          title: "Delivery & Support",
+          desc: "On-time delivery with ongoing project support.",
+          icon: CheckCircle2,
+        },
       ],
     },
     advantage: {
-      description: 'Dedicated logistics expertise, reliable and well-maintained fleet, and round-the-clock telematics monitoring.',
+      description:
+        "Dedicated logistics expertise, reliable and well-maintained fleet, and round-the-clock telematics monitoring.",
       points: [
-        'Dedicated logistics expertise',
-        'Reliable and well-maintained fleet',
-        'Timely and cost-effective operations',
-        'Safety and compliance at every stage',
-        'Scalable solutions for projects of any size',
+        "Dedicated logistics expertise",
+        "Reliable and well-maintained fleet",
+        "Timely and cost-effective operations",
+        "Safety and compliance at every stage",
+        "Scalable solutions for projects of any size",
       ],
-      image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=900&q=80',
+      image:
+        "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=900&q=80",
     },
     relatedProjects: [
       {
-        title: 'Industrial Material Transport',
-        location: 'Zirakpur, Punjab',
-        image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+        title: "Industrial Material Transport",
+        location: "Zirakpur, Punjab",
+        image:
+          "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
       },
       {
-        title: 'Construction Site Logistics',
-        location: 'Mohali, Punjab',
-        image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80',
+        title: "Construction Site Logistics",
+        location: "Mohali, Punjab",
+        image:
+          "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80",
       },
       {
-        title: 'Warehousing & Distribution',
-        location: 'Dera Bassi, Punjab',
-        image: 'https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80',
+        title: "Warehousing & Distribution",
+        location: "Mohali, Punjab",
+        image:
+          "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=800&q=80",
       },
     ],
     faqs: [
       {
-        q: 'What types of logistics services do you provide?',
-        a: 'We provide heavy aggregate transport, bulk cement and steel transit, specialized oversized equipment hauling, warehousing, and just-in-time on-site material dispatching.',
+        q: "What types of logistics services do you provide?",
+        a: "We provide heavy aggregate transport, bulk cement and steel transit, specialized oversized equipment hauling, warehousing, and just-in-time on-site material dispatching.",
       },
       {
-        q: 'Do you handle transportation for large construction projects?',
-        a: 'Yes, our heavy-duty commercial fleet handles multi-thousand-ton daily supply movements for major infrastructure, industrial, and commercial developments across North India.',
+        q: "Do you handle transportation for large construction projects?",
+        a: "Yes, our heavy-duty commercial fleet handles multi-thousand-ton daily supply movements for major infrastructure, industrial, and commercial developments across North India.",
       },
       {
-        q: 'Can you provide warehousing and storage facilities?',
-        a: 'Yes, we operate secure, weather-protected, crane-equipped staging facilities and warehouses with 24/7 digital inventory management and security surveillance.',
+        q: "Can you provide warehousing and storage facilities?",
+        a: "Yes, we operate secure, weather-protected, crane-equipped staging facilities and warehouses with 24/7 digital inventory management and security surveillance.",
       },
       {
-        q: 'How do you ensure the safety of materials during transport?',
-        a: 'All vehicles are equipped with certified heavy-duty tie-down systems, GPS telematics for real-time tracking, speed monitoring, and comprehensive transit insurance.',
+        q: "How do you ensure the safety of materials during transport?",
+        a: "All vehicles are equipped with certified heavy-duty tie-down systems, GPS telematics for real-time tracking, speed monitoring, and comprehensive transit insurance.",
       },
     ],
   },
   inspections: {
-    id: 'inspections',
-    slug: 'inspections',
-    title: 'Site Inspections',
-    tagline: 'Professional construction, structural, and safety inspections to ensure quality, compliance, and long-term reliability.',
-    heroCharacter: '/services/inspections.png',
-    badge: 'Audits & Compliance',
-    badgeBg: '#c85a17',
+    id: "inspections",
+    slug: "inspections",
+    title: "Site Inspections",
+    tagline:
+      "Professional construction, structural, and safety inspections to ensure quality, compliance, and long-term reliability.",
+    heroCharacter: "/services/inspections.png",
+    badge: "Audits & Compliance",
+    badgeBg: "#c85a17",
     icon: Wrench,
     overview: {
-      title: 'Comprehensive Site Inspections',
+      title: "Comprehensive Site Inspections",
       description:
-        'We provide end-to-end site inspection services to assess construction quality, structural integrity, safety compliance, and overall project readiness. Our expert inspections help identify risks early, ensure regulatory compliance, and maintain the highest standards throughout the project lifecycle.',
-      image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80',
+        "We provide end-to-end site inspection services to assess construction quality, structural integrity, safety compliance, and overall project readiness. Our expert inspections help identify risks early, ensure regulatory compliance, and maintain the highest standards throughout the project lifecycle.",
+      image:
+        "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=80",
       badges: [
-        { label: 'Safety Compliance', icon: ShieldCheck },
-        { label: 'Structural Assessment', icon: Building2 },
-        { label: 'Quality Checks', icon: CheckCircle2 },
-        { label: 'Detailed Reporting', icon: FileText },
+        { label: "Safety Compliance", icon: ShieldCheck },
+        { label: "Structural Assessment", icon: Building2 },
+        { label: "Quality Checks", icon: CheckCircle2 },
+        { label: "Detailed Reporting", icon: FileText },
       ],
     },
     offerings: [
       {
-        title: 'Quality & Safety Checks',
-        desc: 'On-site verification of construction quality and safety standards.',
+        title: "Quality & Safety Checks",
+        desc: "On-site verification of construction quality and safety standards.",
         icon: HardHat,
       },
       {
-        title: 'Structural Inspections',
-        desc: 'Assessment of structural integrity, materials, and workmanship.',
+        title: "Structural Inspections",
+        desc: "Assessment of structural integrity, materials, and workmanship.",
         icon: Building2,
       },
       {
-        title: 'Technical Assessment',
-        desc: 'Evaluation of construction methods, design compliance, and risk factors.',
+        title: "Technical Assessment",
+        desc: "Evaluation of construction methods, design compliance, and risk factors.",
         icon: FileText,
       },
       {
-        title: 'Detailed Reports',
-        desc: 'Comprehensive, actionable reports with findings, recommendations, and compliance status.',
+        title: "Detailed Reports",
+        desc: "Comprehensive, actionable reports with findings, recommendations, and compliance status.",
         icon: FileText,
       },
     ],
     process: {
-      title: 'Our Inspection Process',
+      title: "Our Inspection Process",
       steps: [
-        { num: '01', title: 'Site Assessment', desc: 'Initial site review and requirement analysis.', icon: Search },
-        { num: '02', title: 'Detailed Inspection', desc: 'On-site checks, testing, and evaluation.', icon: Wrench },
-        { num: '03', title: 'Reporting', desc: 'Comprehensive findings with clear recommendations.', icon: FileText },
-        { num: '04', title: 'Action & Follow-up', desc: 'Support for remediation and final clearance.', icon: CheckCircle2 },
+        {
+          num: "01",
+          title: "Site Assessment",
+          desc: "Initial site review and requirement analysis.",
+          icon: Search,
+        },
+        {
+          num: "02",
+          title: "Detailed Inspection",
+          desc: "On-site checks, testing, and evaluation.",
+          icon: Wrench,
+        },
+        {
+          num: "03",
+          title: "Reporting",
+          desc: "Comprehensive findings with clear recommendations.",
+          icon: FileText,
+        },
+        {
+          num: "04",
+          title: "Action & Follow-up",
+          desc: "Support for remediation and final clearance.",
+          icon: CheckCircle2,
+        },
       ],
     },
     advantage: {
-      description: 'Accurate, unbiased evaluations and actionable insights from senior licensed structural engineers.',
+      description:
+        "Accurate, unbiased evaluations and actionable insights from senior licensed structural engineers.",
       points: [
-        'Experienced inspection professionals',
-        'Accurate, unbiased, and detailed evaluations',
-        'Compliance with industry and safety standards',
-        'Timely reporting and actionable insights',
+        "Experienced inspection professionals",
+        "Accurate, unbiased, and detailed evaluations",
+        "Compliance with industry and safety standards",
+        "Timely reporting and actionable insights",
       ],
-      image: 'https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=900&q=80',
+      image:
+        "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=900&q=80",
     },
     relatedProjects: [
       {
-        title: 'Griffin Business Park',
-        location: 'Chandigarh, Punjab',
-        image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80',
+        title: "Griffin Business Park",
+        location: "Chandigarh, Punjab",
+        image:
+          "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80",
       },
       {
-        title: 'Dera Bassi Flyover',
-        location: 'Dera Bassi, Punjab',
-        image: 'https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=800&q=80',
+        title: "Mohali Flyover",
+        location: "Mohali, Punjab",
+        image:
+          "https://images.unsplash.com/photo-1545558014-8692077e9b5c?auto=format&fit=crop&w=800&q=80",
       },
       {
-        title: 'Vibrantick Industrial Unit',
-        location: 'Zirakpur, Punjab',
-        image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+        title: "Vibrantick Industrial Unit",
+        location: "Zirakpur, Punjab",
+        image:
+          "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
       },
     ],
     faqs: [
       {
-        q: 'What types of site inspections do you provide?',
-        a: 'We conduct pre-pour rebar audits, non-destructive concrete strength testing (Rebound Hammer & Ultrasonic), structural deflection checks, MEP compliance, and pre-occupancy snagging inspections.',
+        q: "What types of site inspections do you provide?",
+        a: "We conduct pre-pour rebar audits, non-destructive concrete strength testing (Rebound Hammer & Ultrasonic), structural deflection checks, MEP compliance, and pre-occupancy snagging inspections.",
       },
       {
-        q: 'When should a site inspection be done?',
-        a: 'Inspections should be scheduled at major construction milestones: excavation clearance, foundation casting, framing, and final finishing before occupancy certification.',
+        q: "When should a site inspection be done?",
+        a: "Inspections should be scheduled at major construction milestones: excavation clearance, foundation casting, framing, and final finishing before occupancy certification.",
       },
       {
-        q: 'Do you provide compliance and safety inspections?',
-        a: 'Yes, our certified EHS officers perform full workplace safety reviews, scaffolding audits, fire-safety compliance checks, and adherence to National Building Codes.',
+        q: "Do you provide compliance and safety inspections?",
+        a: "Yes, our certified EHS officers perform full workplace safety reviews, scaffolding audits, fire-safety compliance checks, and adherence to National Building Codes.",
       },
       {
-        q: 'Will I receive a detailed report after the inspection?',
-        a: 'Yes, an exhaustive report containing photographic documentation, severity ratings, defect classifications, and clear corrective actions is delivered within 24 to 48 hours.',
+        q: "Will I receive a detailed report after the inspection?",
+        a: "Yes, an exhaustive report containing photographic documentation, severity ratings, defect classifications, and clear corrective actions is delivered within 24 to 48 hours.",
       },
     ],
   },
   websites: {
-    id: 'websites',
-    slug: 'websites',
-    title: 'Websites & Digital',
-    tagline: 'Modern digital solutions for construction, real estate, and businesses — from high-performance websites to complete digital branding and online growth.',
-    heroCharacter: '/services/websites.png',
-    badge: 'Web & Digital',
-    badgeBg: '#004d4d',
+    id: "websites",
+    slug: "websites",
+    title: "Websites & Digital",
+    tagline:
+      "Modern digital solutions for construction, real estate, and businesses — from high-performance websites to complete digital branding and online growth.",
+    heroCharacter: "/services/websites.png",
+    badge: "Web & Digital",
+    badgeBg: "#004d4d",
     icon: Globe,
     overview: {
-      title: 'Digital Solutions for a Modern World',
+      title: "Digital Solutions for a Modern World",
       description:
-        'We design, build, and grow digital experiences that help construction, real estate, and related businesses establish a strong online presence, generate leads, and build lasting brand value.',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80',
+        "We design, build, and grow digital experiences that help construction, real estate, and related businesses establish a strong online presence, generate leads, and build lasting brand value.",
+      image:
+        "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
       badges: [
-        { label: 'Business Websites', icon: Globe },
-        { label: 'Web Applications', icon: Code2 },
-        { label: 'Digital Branding', icon: Palette },
-        { label: 'SEO & Growth', icon: Sparkles },
+        { label: "Business Websites", icon: Globe },
+        { label: "Web Applications", icon: Code2 },
+        { label: "Digital Branding", icon: Palette },
+        { label: "SEO & Growth", icon: Sparkles },
       ],
     },
     offerings: [
       {
-        title: 'Custom Website Development',
-        desc: 'Tailored, responsive, and high-performance websites for your business.',
+        title: "Custom Website Development",
+        desc: "Tailored, responsive, and high-performance websites for your business.",
         icon: Globe,
       },
       {
-        title: 'Web Applications',
-        desc: 'Scalable and secure web applications for operations, clients, and teams.',
+        title: "Web Applications",
+        desc: "Scalable and secure web applications for operations, clients, and teams.",
         icon: Layers,
       },
       {
-        title: 'UI/UX & Branding',
-        desc: 'User-focused design, brand identity, and engaging digital experiences.',
+        title: "UI/UX & Branding",
+        desc: "User-focused design, brand identity, and engaging digital experiences.",
         icon: Palette,
       },
       {
-        title: 'SEO & Digital Marketing',
-        desc: 'Improve visibility, generate leads, and grow your business online.',
+        title: "SEO & Digital Marketing",
+        desc: "Improve visibility, generate leads, and grow your business online.",
         icon: Sparkles,
       },
     ],
     process: {
-      title: 'Our Delivery Process',
+      title: "Our Delivery Process",
       steps: [
-        { num: '01', title: 'Discovery', desc: 'Understand your goals, requirements, and audience.', icon: Search },
-        { num: '02', title: 'Design', desc: 'Create intuitive and brand-aligned designs.', icon: Palette },
-        { num: '03', title: 'Development', desc: 'Build a secure, scalable, and high-performing solution.', icon: Code2 },
-        { num: '04', title: 'Launch & Grow', desc: 'Deploy, optimize, and support for long-term results.', icon: Rocket },
+        {
+          num: "01",
+          title: "Discovery",
+          desc: "Understand your goals, requirements, and audience.",
+          icon: Search,
+        },
+        {
+          num: "02",
+          title: "Design",
+          desc: "Create intuitive and brand-aligned designs.",
+          icon: Palette,
+        },
+        {
+          num: "03",
+          title: "Development",
+          desc: "Build a secure, scalable, and high-performing solution.",
+          icon: Code2,
+        },
+        {
+          num: "04",
+          title: "Launch & Grow",
+          desc: "Deploy, optimize, and support for long-term results.",
+          icon: Rocket,
+        },
       ],
     },
     advantage: {
-      description: 'A reliable technology partner with industry understanding, creative expertise, and a result-driven approach.',
+      description:
+        "A reliable technology partner with industry understanding, creative expertise, and a result-driven approach.",
       points: [
-        'Construction & real estate industry expertise',
-        'Custom, scalable, and future-ready solutions',
-        'Design-led, user-first approach',
-        'Ongoing support and maintenance',
-        'Focus on measurable business growth',
+        "Construction & real estate industry expertise",
+        "Custom, scalable, and future-ready solutions",
+        "Design-led, user-first approach",
+        "Ongoing support and maintenance",
+        "Focus on measurable business growth",
       ],
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80',
+      image:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
     },
     relatedProjects: [
       {
-        title: 'Griffin Construction Website',
-        location: 'Construction Company Website',
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+        title: "Griffin Construction Website",
+        location: "Construction Company Website",
+        image:
+          "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
       },
       {
-        title: 'MP-MLA Portal',
-        location: 'Constituency Management Platform',
-        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80',
+        title: "MP-MLA Portal",
+        location: "Constituency Management Platform",
+        image:
+          "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
       },
       {
-        title: 'KYP-5 Platform',
-        location: 'Student Assessment & Learning Platform',
-        image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80',
+        title: "KYP-5 Platform",
+        location: "Student Assessment & Learning Platform",
+        image:
+          "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80",
       },
     ],
     faqs: [
       {
-        q: 'What types of websites do you build?',
-        a: 'We design and develop high-conversion corporate brand portals, interactive real estate development showcases, architectural portfolio websites, and enterprise web applications.',
+        q: "What types of websites do you build?",
+        a: "We design and develop high-conversion corporate brand portals, interactive real estate development showcases, architectural portfolio websites, and enterprise web applications.",
       },
       {
-        q: 'Can you redesign our existing website?',
-        a: 'Yes, we take legacy sites and transform them into cutting-edge, mobile-first, blazing-fast web experiences engineered for higher conversion and SEO visibility.',
+        q: "Can you redesign our existing website?",
+        a: "Yes, we take legacy sites and transform them into cutting-edge, mobile-first, blazing-fast web experiences engineered for higher conversion and SEO visibility.",
       },
       {
-        q: 'Do you provide ongoing maintenance and support?',
-        a: 'Yes, our engineering team provides continuous SLA-backed maintenance, security monitoring, cloud hosting optimization, and incremental feature updates.',
+        q: "Do you provide ongoing maintenance and support?",
+        a: "Yes, our engineering team provides continuous SLA-backed maintenance, security monitoring, cloud hosting optimization, and incremental feature updates.",
       },
       {
-        q: 'How long does it take to build a website?',
-        a: 'A bespoke modern corporate website typically takes 3 to 4 weeks from discovery to production launch, while complex web applications take 6 to 10 weeks.',
+        q: "How long does it take to build a website?",
+        a: "A bespoke modern corporate website typically takes 3 to 4 weeks from discovery to production launch, while complex web applications take 6 to 10 weeks.",
       },
     ],
   },
@@ -430,23 +538,24 @@ export default function ServicesPage({ onOpenQuote }) {
 
   // Normalized service resolution: default to 'real-estate' if slug is unknown or root /services
   const activeServiceKey =
-    slug === 'transport-logistics'
-      ? 'transport'
-      : slug === 'site-inspections'
-      ? 'inspections'
-      : slug === 'websites-digital'
-      ? 'websites'
-      : slug === 'real-estate-development'
-      ? 'real-estate'
-      : SERVICES_CONFIG[slug]
-      ? slug
-      : 'real-estate';
+    slug === "transport-logistics"
+      ? "transport"
+      : slug === "site-inspections"
+        ? "inspections"
+        : slug === "websites-digital"
+          ? "websites"
+          : slug === "real-estate-development"
+            ? "real-estate"
+            : SERVICES_CONFIG[slug]
+              ? slug
+              : "real-estate";
 
-  const service = SERVICES_CONFIG[activeServiceKey] || SERVICES_CONFIG['real-estate'];
+  const service =
+    SERVICES_CONFIG[activeServiceKey] || SERVICES_CONFIG["real-estate"];
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
 
   const handleContactClick = () => {
-    navigate('/contact');
+    navigate("/contact");
     window.scrollTo(0, 0);
   };
 
@@ -465,7 +574,7 @@ export default function ServicesPage({ onOpenQuote }) {
             alt="Griffin Services Banner"
             className="w-full h-full object-cover object-[85%_top] sm:object-[right_top] md:object-[right_top]"
             onError={(e) => {
-              e.currentTarget.src = '/Golden-Riverside-Castle.png';
+              e.currentTarget.src = "/Golden-Riverside-Castle.png";
             }}
           />
         </div>
@@ -475,7 +584,7 @@ export default function ServicesPage({ onOpenQuote }) {
           className="absolute inset-0 pointer-events-none md:hidden"
           style={{
             background:
-              'linear-gradient(90deg, rgba(250, 247, 242, 0.95) 0%, rgba(250, 247, 242, 0.85) 55%, rgba(250, 247, 242, 0.4) 100%)',
+              "linear-gradient(90deg, rgba(250, 247, 242, 0.95) 0%, rgba(250, 247, 242, 0.85) 55%, rgba(250, 247, 242, 0.4) 100%)",
           }}
           aria-hidden="true"
         />
@@ -536,7 +645,10 @@ export default function ServicesPage({ onOpenQuote }) {
                 {service.overview.badges.map((b) => {
                   const Icon = b.icon;
                   return (
-                    <div key={b.label} className="text-center sm:text-left flex flex-col items-center sm:items-start pt-2">
+                    <div
+                      key={b.label}
+                      className="text-center sm:text-left flex flex-col items-center sm:items-start pt-2"
+                    >
                       <div className="w-10 h-10 rounded-xl bg-[#faebd7]/70 flex items-center justify-center text-[#d88918] mb-2 shadow-xs">
                         <Icon className="w-5 h-5 stroke-[2]" />
                       </div>
@@ -561,11 +673,11 @@ export default function ServicesPage({ onOpenQuote }) {
               <span>WHAT WE OFFER</span>
             </div>
             <h2 className="font-serif font-extrabold text-2xl sm:text-3xl md:text-[34px] text-[#0c1f38] tracking-tight">
-              {service.id === 'inspections'
-                ? 'Our Inspection Services'
-                : service.id === 'websites'
-                ? 'Our Websites & Digital Services'
-                : 'What We Offer'}
+              {service.id === "inspections"
+                ? "Our Inspection Services"
+                : service.id === "websites"
+                  ? "Our Websites & Digital Services"
+                  : "What We Offer"}
             </h2>
           </div>
 
@@ -620,7 +732,10 @@ export default function ServicesPage({ onOpenQuote }) {
                   const StepIcon = st.icon;
                   const isLast = idx === service.process.steps.length - 1;
                   return (
-                    <div key={st.num} className="flex flex-col items-start relative group">
+                    <div
+                      key={st.num}
+                      className="flex flex-col items-start relative group"
+                    >
                       {/* Step Circle with Icon + Arrow */}
                       <div className="flex items-center justify-between w-full mb-3.5">
                         <div className="w-12 h-12 rounded-full bg-white/10 border border-white/20 text-[#f2ae38] flex items-center justify-center transition-all group-hover:scale-105 group-hover:bg-[#d88918] group-hover:text-white shadow-md">
@@ -681,7 +796,9 @@ export default function ServicesPage({ onOpenQuote }) {
                     <div className="w-5 h-5 rounded-full bg-[#faebd7] flex items-center justify-center text-[#d88918] shrink-0">
                       <Check className="w-3.5 h-3.5 stroke-[2.5]" />
                     </div>
-                    <span className="text-xs sm:text-sm text-[#0c1f38] font-medium">{pt}</span>
+                    <span className="text-xs sm:text-sm text-[#0c1f38] font-medium">
+                      {pt}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -728,7 +845,7 @@ export default function ServicesPage({ onOpenQuote }) {
             {service.relatedProjects.map((p) => (
               <div
                 key={p.title}
-                onClick={() => navigate('/projects')}
+                onClick={() => navigate("/projects")}
                 className="bg-white rounded-2xl overflow-hidden border border-[#e8dfd3] shadow-[0_4px_16px_rgba(0,0,0,0.04)] hover:shadow-lg transition-all duration-300 group cursor-pointer"
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
@@ -739,7 +856,9 @@ export default function ServicesPage({ onOpenQuote }) {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent flex items-end p-4 justify-between">
                     <div>
-                      <h4 className="font-bold text-white text-sm">{p.title}</h4>
+                      <h4 className="font-bold text-white text-sm">
+                        {p.title}
+                      </h4>
                       <p className="text-[11px] text-slate-200">{p.location}</p>
                     </div>
                     <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md text-white flex items-center justify-center group-hover:bg-[#d88918] transition-colors">
@@ -767,7 +886,8 @@ export default function ServicesPage({ onOpenQuote }) {
                 FAQs
               </h2>
               <p className="text-xs sm:text-sm text-[#556477] leading-relaxed">
-                Find answers to common questions about our {service.title.toLowerCase()} services.
+                Find answers to common questions about our{" "}
+                {service.title.toLowerCase()} services.
               </p>
             </div>
 
@@ -788,7 +908,7 @@ export default function ServicesPage({ onOpenQuote }) {
                       <span>{faq.q}</span>
                       <ChevronDown
                         className={`w-4 h-4 text-slate-400 shrink-0 transition-transform duration-300 ${
-                          isOpen ? 'rotate-180 text-[#d88918]' : ''
+                          isOpen ? "rotate-180 text-[#d88918]" : ""
                         }`}
                       />
                     </button>
@@ -815,7 +935,7 @@ export default function ServicesPage({ onOpenQuote }) {
               alt="Griffin Architecture"
               className="w-full h-full object-cover object-center"
               onError={(e) => {
-                e.currentTarget.src = '/Golden-Riverside-Castle.png';
+                e.currentTarget.src = "/Golden-Riverside-Castle.png";
               }}
             />
             {/* Shading overlay into the dark banner */}
@@ -829,7 +949,8 @@ export default function ServicesPage({ onOpenQuote }) {
                 Have a Project in Mind?
               </h2>
               <p className="text-xs sm:text-sm text-[#aeb9c6]">
-                Let's discuss your {service.title.toLowerCase()} requirements and create a tailored solution for your project.
+                Let's discuss your {service.title.toLowerCase()} requirements
+                and create a tailored solution for your project.
               </p>
             </div>
 
