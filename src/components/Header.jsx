@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Phone,
   Menu,
   X,
   ChevronDown,
+  ChevronRight,
   Home,
   Info,
   Layers,
@@ -12,21 +13,109 @@ import {
   Users,
   FileEdit,
   Mail,
+  Truck,
+  Wrench,
+  Globe,
+  Sparkles,
 } from 'lucide-react';
 import { companyInfo } from '../data/websiteData';
+
+export const SERVICES_DROPDOWN_ITEMS = [
+  {
+    title: 'Real Estate Development',
+    slug: 'real-estate',
+    desc: 'Residential & commercial spaces',
+    icon: Building2,
+  },
+  {
+    title: 'Transport & Logistics',
+    slug: 'transport',
+    desc: 'Fleet & heavy material transit',
+    icon: Truck,
+  },
+  {
+    title: 'Site Inspections',
+    slug: 'inspections',
+    desc: 'Quality, safety & compliance audits',
+    icon: Wrench,
+  },
+  {
+    title: 'Websites & Digital',
+    slug: 'websites',
+    desc: 'Modern web platforms & digital branding',
+    icon: Globe,
+  },
+];
 
 export default function Header() {
   const location = useLocation();
   const navigate = useNavigate();
   const isContactPage = location.pathname === '/contact';
+  const isBlogPage = location.pathname === '/blog';
+  const isAboutPage = location.pathname === '/about';
+  const isTeamPage = location.pathname === '/team';
+  const isProjectsPage = location.pathname === '/projects';
+  const isServicesPage = location.pathname.startsWith('/services');
+  const isPrivacyPage = location.pathname === '/privacy-policy';
+  const isTermsPage = location.pathname === '/terms-and-conditions' || location.pathname === '/terms';
+  const isDedicatedPage =
+    isContactPage ||
+    isBlogPage ||
+    isAboutPage ||
+    isTeamPage ||
+    isProjectsPage ||
+    isServicesPage ||
+    isPrivacyPage ||
+    isTermsPage;
 
   const [isSticky, setIsSticky] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+
+  const dropdownTimerRef = useRef(null);
+
+  const handleDropdownEnter = () => {
+    if (dropdownTimerRef.current) {
+      clearTimeout(dropdownTimerRef.current);
+    }
+    setServicesDropdownOpen(true);
+  };
+
+  const handleDropdownLeave = () => {
+    dropdownTimerRef.current = setTimeout(() => {
+      setServicesDropdownOpen(false);
+    }, 150);
+  };
 
   useEffect(() => {
     if (isContactPage) {
       setActiveSection('contact');
+      return;
+    }
+    if (isBlogPage) {
+      setActiveSection('blog');
+      return;
+    }
+    if (isAboutPage) {
+      setActiveSection('about');
+      return;
+    }
+    if (isTeamPage) {
+      setActiveSection('team');
+      return;
+    }
+    if (isProjectsPage) {
+      setActiveSection('projects');
+      return;
+    }
+    if (isServicesPage) {
+      setActiveSection('services');
+      return;
+    }
+    if (isPrivacyPage || isTermsPage) {
+      setActiveSection('');
       return;
     }
 
@@ -40,13 +129,13 @@ export default function Header() {
         return;
       }
 
-      const sections = ['home', 'about', 'services', 'projects', 'team', 'advantage'];
+      const sections = ['home', 'about', 'services', 'projects', 'team'];
       const scrollPos = window.scrollY + 200;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
         if (el && el.offsetTop <= scrollPos) {
-          setActiveSection(sections[i] === 'advantage' ? 'blog' : sections[i]);
+          setActiveSection(sections[i]);
           return;
         }
       }
@@ -63,26 +152,53 @@ export default function Header() {
       window.removeEventListener('scroll', updateActiveSection);
       window.removeEventListener('hashchange', updateActiveSection);
     };
-  }, [isContactPage, location.pathname, location.hash]);
+  }, [
+    isContactPage,
+    isBlogPage,
+    isAboutPage,
+    isTeamPage,
+    isProjectsPage,
+    isServicesPage,
+    isPrivacyPage,
+    isTermsPage,
+    location.pathname,
+    location.hash,
+  ]);
 
   const navLinks = [
     { label: 'Home', href: '#home', id: 'home', icon: Home },
-    { label: 'About', href: '#about', id: 'about', icon: Info },
-    { label: 'Services', href: '#services', id: 'services', icon: Layers, hasDropdown: true },
-    { label: 'Projects', href: '#projects', id: 'projects', icon: Building2 },
-    { label: 'Team', href: '#team', id: 'team', icon: Users },
-    { label: 'Blog', href: '#advantage', id: 'blog', icon: FileEdit },
+    { label: 'About', href: '/about', id: 'about', icon: Info },
+    { label: 'Services', href: '/services', id: 'services', icon: Layers, hasDropdown: true },
+    { label: 'Projects', href: '/projects', id: 'projects', icon: Building2 },
+    { label: 'Team', href: '/team', id: 'team', icon: Users },
+    { label: 'Blog', href: '/blog', id: 'blog', icon: FileEdit },
     { label: 'Contact', href: '/contact', id: 'contact', icon: Mail },
   ];
 
   const handleNavClick = (e, link) => {
     e.preventDefault();
     setMobileMenuOpen(false);
+    setServicesDropdownOpen(false);
     setActiveSection(link.id);
 
-    if (link.id === 'contact') {
-      if (location.pathname !== '/contact') {
-        navigate('/contact');
+    if (link.id === 'services') {
+      if (location.pathname !== '/services') {
+        navigate('/services');
+      }
+      window.scrollTo(0, 0);
+      return;
+    }
+
+    if (
+      link.id === 'contact' ||
+      link.id === 'blog' ||
+      link.id === 'about' ||
+      link.id === 'team' ||
+      link.id === 'projects'
+    ) {
+      const target = `/${link.id}`;
+      if (location.pathname !== target) {
+        navigate(target);
       }
       window.scrollTo(0, 0);
       return;
@@ -105,6 +221,14 @@ export default function Header() {
     }
   };
 
+  const handleServiceSelect = (slug) => {
+    setServicesDropdownOpen(false);
+    setMobileMenuOpen(false);
+    setActiveSection('services');
+    navigate(`/services/${slug}`);
+    window.scrollTo(0, 0);
+  };
+
   const handleLogoClick = (e) => {
     e.preventDefault();
     setMobileMenuOpen(false);
@@ -119,11 +243,11 @@ export default function Header() {
     <>
       <header
         className={`fixed top-0 left-0 w-full h-[68px] z-50 flex items-center ${
-          isContactPage ? 'bg-[#06111e] border-b border-white/10' : ''
+          isDedicatedPage ? 'bg-[#06111e] border-b border-white/10' : ''
         }`}
       >
         {/* Only on Home page: provide smooth scroll cross-fade layers */}
-        {!isContactPage && (
+        {!isDedicatedPage && (
           <>
             {/* Layer 1: Solid/Glassmorphic dark sticky navbar with border & subtle shadow */}
             <div
@@ -160,6 +284,88 @@ export default function Header() {
             {navLinks.map((link) => {
               const isActive = activeSection === link.id;
               const Icon = link.icon;
+
+              if (link.hasDropdown) {
+                return (
+                  <div
+                    key={link.id}
+                    className="relative"
+                    onMouseEnter={handleDropdownEnter}
+                    onMouseLeave={handleDropdownLeave}
+                  >
+                    <a
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link)}
+                      className={`group relative flex flex-col items-center justify-center gap-1 py-1 px-1.5 transition-all cursor-pointer ${
+                        isActive ? 'text-[#f2ae38]' : 'text-white/95 hover:text-[#f2ae38]'
+                      }`}
+                    >
+                      <Icon
+                        className={`w-4 h-4 transition-all duration-200 group-hover:scale-110 drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)] ${
+                          isActive
+                            ? 'text-[#f2ae38] stroke-[2.4] drop-shadow-[0_0_8px_rgba(242,174,56,0.7)]'
+                            : 'text-white stroke-[2] group-hover:text-[#f2ae38]'
+                        }`}
+                      />
+                      <div className="flex items-center gap-1 text-[13px] font-bold tracking-wide leading-none drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
+                        <span>{link.label}</span>
+                        <ChevronDown
+                          className={`w-3 h-3 -ml-0.5 transition-transform duration-200 ${
+                            servicesDropdownOpen
+                              ? 'rotate-180 text-[#f2ae38]'
+                              : isActive
+                              ? 'text-[#f2ae38]'
+                              : 'text-white/80 group-hover:text-[#f2ae38]'
+                          }`}
+                        />
+                      </div>
+                      {/* Active Indicator Underline */}
+                      {isActive && (
+                        <span className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-8 h-[2.5px] bg-[#f2ae38] rounded-full shadow-[0_0_8px_rgba(242,174,56,0.9)]" />
+                      )}
+                    </a>
+
+                    {/* Desktop Dropdown Popover */}
+                    <div
+                      className={`absolute top-full left-1/2 -translate-x-1/2 pt-2 transition-all duration-200 z-50 min-w-[240px] ${
+                        servicesDropdownOpen
+                          ? 'opacity-100 translate-y-0 pointer-events-auto visible'
+                          : 'opacity-0 -translate-y-1.5 pointer-events-none invisible'
+                      }`}
+                    >
+                      <div className="bg-[#081626]/98 backdrop-blur-xl rounded-xl p-1.5 border border-white/12 shadow-[0_15px_35px_rgba(0,0,0,0.55)]">
+                        <div className="flex flex-col gap-0.5">
+                          {SERVICES_DROPDOWN_ITEMS.map((item) => {
+                            const isItemActive = location.pathname === `/services/${item.slug}`;
+                            return (
+                              <button
+                                key={item.slug}
+                                type="button"
+                                onClick={() => handleServiceSelect(item.slug)}
+                                className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-left text-[13px] font-medium transition-colors cursor-pointer group/item ${
+                                  isItemActive
+                                    ? 'bg-[#d88918]/20 text-[#f2ae38] font-semibold'
+                                    : 'text-white/85 hover:text-white hover:bg-white/5'
+                                }`}
+                              >
+                                <span>{item.title}</span>
+                                <ChevronRight
+                                  className={`w-3.5 h-3.5 transition-transform group-hover/item:translate-x-0.5 ${
+                                    isItemActive
+                                      ? 'text-[#f2ae38]'
+                                      : 'text-white/30 group-hover/item:text-white/70'
+                                  }`}
+                                />
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
               return (
                 <a
                   key={link.id}
@@ -180,13 +386,6 @@ export default function Header() {
                   />
                   <div className="flex items-center gap-1 text-[13px] font-bold tracking-wide leading-none drop-shadow-[0_1px_3px_rgba(0,0,0,0.9)]">
                     <span>{link.label}</span>
-                    {link.hasDropdown && (
-                      <ChevronDown
-                        className={`w-3 h-3 -ml-0.5 transition-transform group-hover:rotate-180 ${
-                          isActive ? 'text-[#f2ae38]' : 'text-white/80 group-hover:text-[#f2ae38]'
-                        }`}
-                      />
-                    )}
                   </div>
                   {/* Active Indicator Underline matching Reference Screenshot */}
                   {isActive && (
@@ -244,6 +443,56 @@ export default function Header() {
                 {navLinks.map((link) => {
                   const isActive = activeSection === link.id;
                   const Icon = link.icon;
+
+                  if (link.hasDropdown) {
+                    return (
+                      <div key={link.id} className="flex flex-col">
+                        <div
+                          className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold transition-all cursor-pointer ${
+                            isActive
+                              ? 'bg-[#d88918] text-[#071322]'
+                              : 'text-white/85 hover:bg-white/5 hover:text-white'
+                          }`}
+                          onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+                        >
+                          <div className="flex items-center gap-3.5">
+                            <Icon className="w-4 h-4" />
+                            <span>{link.label}</span>
+                          </div>
+                          <ChevronDown
+                            className={`w-4 h-4 transition-transform duration-200 ${
+                              mobileServicesOpen ? 'rotate-180' : ''
+                            }`}
+                          />
+                        </div>
+
+                        {/* Mobile Services Accordion */}
+                        {mobileServicesOpen && (
+                          <div className="pl-3 pr-1 py-1 mt-1 space-y-0.5 bg-black/20 rounded-xl border border-white/5">
+                            {SERVICES_DROPDOWN_ITEMS.map((sub) => {
+                              const isCurrent = location.pathname === `/services/${sub.slug}`;
+                              return (
+                                <button
+                                  key={sub.slug}
+                                  type="button"
+                                  onClick={() => handleServiceSelect(sub.slug)}
+                                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-lg text-xs text-left transition-colors cursor-pointer ${
+                                    isCurrent
+                                      ? 'bg-[#d88918]/25 text-[#f2ae38] font-semibold'
+                                      : 'text-white/80 hover:bg-white/5 hover:text-white'
+                                  }`}
+                                >
+                                  <span>{sub.title}</span>
+                                  <ChevronRight className="w-3.5 h-3.5 text-white/30" />
+                                </button>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    );
+                  }
+
                   return (
                     <a
                       key={link.id}

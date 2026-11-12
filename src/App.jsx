@@ -14,6 +14,13 @@ import Team from './components/Team';
 import Advantage from './components/Advantage';
 import ContactBanner from './components/ContactBanner';
 import Contact from './components/Contact';
+import Blog from './components/Blog';
+import AboutPage from './components/AboutPage';
+import TeamPage from './components/TeamPage';
+import ProjectsPage from './components/ProjectsPage';
+import ServicesPage from './components/ServicesPage';
+import PrivacyPolicy from './components/PrivacyPolicy';
+import TermsAndConditions from './components/TermsAndConditions';
 import Footer from './components/Footer';
 
 import QuoteModal from './components/QuoteModal';
@@ -79,7 +86,16 @@ export default function App() {
 
   // Scroll to top when switching pages
   useEffect(() => {
-    if (location.pathname === '/contact') {
+    if (
+      location.pathname === '/contact' ||
+      location.pathname === '/blog' ||
+      location.pathname === '/about' ||
+      location.pathname === '/team' ||
+      location.pathname === '/projects' ||
+      location.pathname.startsWith('/services') ||
+      location.pathname === '/privacy-policy' ||
+      location.pathname.startsWith('/terms')
+    ) {
       window.scrollTo(0, 0);
     }
   }, [location.pathname]);
@@ -126,7 +142,16 @@ export default function App() {
               />
             }
           />
+          <Route path="/about" element={<AboutPage onOpenQuote={handleOpenQuote} />} />
+          <Route path="/services" element={<ServicesPage onOpenQuote={handleOpenQuote} />} />
+          <Route path="/services/:slug" element={<ServicesPage onOpenQuote={handleOpenQuote} />} />
+          <Route path="/projects" element={<ProjectsPage onSelectProject={handleConsultForSimilar} onOpenQuote={handleOpenQuote} />} />
+          <Route path="/team" element={<TeamPage onOpenQuote={handleOpenQuote} />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
           <Route
             path="*"
             element={
