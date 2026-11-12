@@ -30,24 +30,40 @@ export default function Header() {
       return;
     }
 
-    const handleScroll = () => {
+    const updateActiveSection = () => {
       setIsSticky(window.scrollY > 30);
 
-      const sections = ['home', 'about', 'services', 'projects', 'team'];
-      const scrollPos = window.scrollY + 180;
+      // Check URL hash first if present
+      const hash = window.location.hash.replace('#', '');
+      if (window.scrollY < 80 && (!hash || hash === 'home')) {
+        setActiveSection('home');
+        return;
+      }
+
+      const sections = ['home', 'about', 'services', 'projects', 'team', 'advantage'];
+      const scrollPos = window.scrollY + 200;
 
       for (let i = sections.length - 1; i >= 0; i--) {
         const el = document.getElementById(sections[i]);
         if (el && el.offsetTop <= scrollPos) {
-          setActiveSection(sections[i]);
-          break;
+          setActiveSection(sections[i] === 'advantage' ? 'blog' : sections[i]);
+          return;
         }
       }
+
+      setActiveSection('home');
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isContactPage]);
+    // Update active section immediately on route or hash change
+    updateActiveSection();
+
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    window.addEventListener('hashchange', updateActiveSection);
+    return () => {
+      window.removeEventListener('scroll', updateActiveSection);
+      window.removeEventListener('hashchange', updateActiveSection);
+    };
+  }, [isContactPage, location.pathname, location.hash]);
 
   const navLinks = [
     { label: 'Home', href: '#home', id: 'home', icon: Home },
@@ -62,12 +78,13 @@ export default function Header() {
   const handleNavClick = (e, link) => {
     e.preventDefault();
     setMobileMenuOpen(false);
+    setActiveSection(link.id);
 
     if (link.id === 'contact') {
       if (location.pathname !== '/contact') {
         navigate('/contact');
       }
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo(0, 0);
       return;
     }
 
@@ -91,24 +108,40 @@ export default function Header() {
   const handleLogoClick = (e) => {
     e.preventDefault();
     setMobileMenuOpen(false);
+    setActiveSection('home');
     if (location.pathname !== '/') {
       navigate('/');
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
   };
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 w-full h-[68px] z-50 transition-all duration-300 flex items-center ${
-          isContactPage
-            ? 'bg-[#06111e] border-b border-white/10'
-            : isSticky
-            ? 'bg-[#06111e]/92 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.6)] border-b border-white/10'
-            : 'bg-gradient-to-b from-[#030914]/85 via-[#030914]/45 to-transparent backdrop-blur-[1.5px]'
+        className={`fixed top-0 left-0 w-full h-[68px] z-50 flex items-center ${
+          isContactPage ? 'bg-[#06111e] border-b border-white/10' : ''
         }`}
       >
-        <div className="max-w-[1280px] w-full mx-auto px-5 sm:px-8 flex items-center justify-between gap-4">
+        {/* Only on Home page: provide smooth scroll cross-fade layers */}
+        {!isContactPage && (
+          <>
+            {/* Layer 1: Solid/Glassmorphic dark sticky navbar with border & subtle shadow */}
+            <div
+              className={`absolute inset-0 bg-[#06111e]/95 backdrop-blur-xl border-b border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.5)] transition-opacity duration-300 pointer-events-none ${
+                isSticky ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+
+            {/* Layer 2: Soft transparent gradient fade for top of hero section */}
+            <div
+              className={`absolute inset-0 bg-gradient-to-b from-[#030914]/85 via-[#030914]/40 to-transparent backdrop-blur-[1.5px] transition-opacity duration-300 pointer-events-none ${
+                !isSticky ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          </>
+        )}
+
+        <div className="max-w-[1280px] w-full mx-auto px-5 sm:px-8 flex items-center justify-between gap-4 relative z-10">
           {/* Brand Logo: Gryfno Szajka 3 Griffins Logo */}
           <a
             href="/"

@@ -123,7 +123,7 @@ export default function Contact() {
                 <div>
                   <h3 className="text-sm font-bold text-[#0c1f38] leading-snug">Our Office</h3>
                   <p className="text-xs text-[#556477] mt-1 leading-relaxed">
-                    Dera Bassi, Punjab – 160055, India
+                    Mohali, Punjab – 160055, India
                   </p>
                 </div>
               </div>
