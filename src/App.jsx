@@ -35,7 +35,7 @@ function HomePage({ handleOpenQuote, setSelectedService, setSelectedProject }) {
       <Hero onOpenQuote={handleOpenQuote} />
       <Services onSelectService={(srv) => setSelectedService(srv)} />
       <About onOpenQuote={handleOpenQuote} />
-      <Projects onSelectProject={(prj) => setSelectedProject(prj)} />
+      {/* <Projects onSelectProject={(prj) => setSelectedProject(prj)} /> */}
       <Team onOpenQuote={handleOpenQuote} />
       <Advantage />
       <ContactBanner />

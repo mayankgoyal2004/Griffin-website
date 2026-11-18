@@ -169,7 +169,7 @@ export default function Header() {
     { label: 'Home', href: '#home', id: 'home', icon: Home },
     { label: 'About', href: '/about', id: 'about', icon: Info },
     { label: 'Services', href: '/services', id: 'services', icon: Layers, hasDropdown: true },
-    { label: 'Projects', href: '/projects', id: 'projects', icon: Building2 },
+    // { label: 'Projects', href: '/projects', id: 'projects', icon: Building2 },
     { label: 'Team', href: '/team', id: 'team', icon: Users },
     { label: 'Blog', href: '/blog', id: 'blog', icon: FileEdit },
     { label: 'Contact', href: '/contact', id: 'contact', icon: Mail },

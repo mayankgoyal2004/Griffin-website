@@ -85,7 +85,7 @@ export default function Hero() {
       <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0">
         <img
           ref={bgImgRef}
-          src="/Griffin-valiue.png"
+          src="/regal-griffin-hero.png"
           alt="Griffin Construction Artwork"
           className="w-full h-full object-cover object-[78%_top] sm:object-[82%_top] md:object-[96%_top] lg:object-[98%_top] xl:object-[96%_top]"
         />
