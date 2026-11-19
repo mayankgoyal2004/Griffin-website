@@ -81,6 +81,26 @@ export default function About({ onOpenQuote }) {
 
   return (
     <section ref={sectionRef} id="about" className="bg-[#eaf0f2] text-[#142b45] py-16 sm:py-20 relative overflow-hidden">
+      {/* Luxury Brand Watermark: Golden Griffin with Ornate Armor (Right / Center behind stats & copy) */}
+      <div className="absolute -right-16 top-1/2 -translate-y-1/2 w-[480px] sm:w-[620px] lg:w-[720px] pointer-events-none select-none opacity-[0.08] mix-blend-multiply z-0">
+        <img
+          src="/golden-griffin-armor.png"
+          alt=""
+          className="w-full h-auto object-contain"
+          aria-hidden="true"
+        />
+      </div>
+
+      {/* Luxury Brand Watermark: Golden Eagle Head (Bottom-Left behind photos) */}
+      <div className="absolute -bottom-10 -left-10 w-56 sm:w-72 pointer-events-none select-none opacity-[0.06] mix-blend-multiply z-0">
+        <img
+          src="/golden-eagle-head.png"
+          alt=""
+          className="w-full h-auto object-contain"
+          aria-hidden="true"
+        />
+      </div>
+
       {/* Subtle radial ambient reflection */}
       <div
         className="absolute -right-12 top-0 w-96 h-full pointer-events-none opacity-50"
@@ -103,10 +123,13 @@ export default function About({ onOpenQuote }) {
               }}
             >
               <img
-                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=85"
+                src="/grifina-website-image-2.png"
                 alt="Contemporary commercial construction"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                 loading="lazy"
+                onError={(e) => {
+                  e.currentTarget.src = "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=85";
+                }}
               />
             </div>
 
@@ -119,10 +142,13 @@ export default function About({ onOpenQuote }) {
               }}
             >
               <img
-                src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=85"
+                src="/grifina-website-image-3.png"
                 alt="Architect reviewing construction plans"
                 className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                 loading="lazy"
+                onError={(e) => {
+                  e.currentTarget.src = "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=600&q=85";
+                }}
               />
             </div>
           </div>

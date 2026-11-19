@@ -74,8 +74,18 @@ export default function Advantage() {
   ];
 
   return (
-    <section ref={sectionRef} id="advantage" className="py-8 sm:py-10 bg-[#fffdfa] border-t border-[#ece7de] overflow-hidden">
-      <div className="max-w-[1240px] mx-auto px-5 sm:px-8">
+    <section ref={sectionRef} id="advantage" className="py-8 sm:py-10 bg-[#fffdfa] border-t border-[#ece7de] overflow-hidden relative">
+      {/* Subtle Griffin Line Art Watermark */}
+      <div className="absolute -left-10 top-1/2 -translate-y-1/2 w-48 pointer-events-none select-none opacity-[0.045] mix-blend-multiply z-0">
+        <img
+          src="/golden-eagle-head.png"
+          alt=""
+          className="w-full h-auto object-contain"
+          aria-hidden="true"
+        />
+      </div>
+
+      <div className="max-w-[1240px] mx-auto px-5 sm:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-6 lg:gap-0">
           {/* Title block */}
           <div className="lg:col-span-4 text-center lg:text-left pr-0 lg:pr-6">

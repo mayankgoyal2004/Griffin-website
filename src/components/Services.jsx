@@ -1,8 +1,8 @@
-import React, { useRef, useEffect } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Home, Truck, Wrench, Globe, Check, ArrowRight } from 'lucide-react';
-import { servicesData } from '../data/websiteData';
+import React, { useRef, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Home, Truck, Wrench, Globe, Check, ArrowRight } from "lucide-react";
+import { servicesData } from "../data/websiteData";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,12 +21,12 @@ export default function Services({ onSelectService }) {
           opacity: 1,
           y: 0,
           duration: 0.8,
-          ease: 'power3.out',
+          ease: "power3.out",
           scrollTrigger: {
             trigger: headerRef.current,
-            start: 'top 85%',
+            start: "top 85%",
           },
-        }
+        },
       );
 
       // Staggered cards reveal
@@ -38,12 +38,12 @@ export default function Services({ onSelectService }) {
           y: 0,
           duration: 0.8,
           stagger: 0.12,
-          ease: 'power3.out',
+          ease: "power3.out",
           scrollTrigger: {
             trigger: cardsRef.current[0],
-            start: 'top 85%',
+            start: "top 85%",
           },
-        }
+        },
       );
     }, sectionRef);
 
@@ -52,16 +52,26 @@ export default function Services({ onSelectService }) {
 
   const getServiceIcon = (iconName) => {
     switch (iconName) {
-      case 'Home':
-        return <Home className="w-5 h-5 sm:w-6 sm:h-6 text-white stroke-[2.2]" />;
-      case 'Truck':
-        return <Truck className="w-5 h-5 sm:w-6 sm:h-6 text-white stroke-[2.2]" />;
-      case 'Wrench':
-        return <Wrench className="w-5 h-5 sm:w-6 sm:h-6 text-white stroke-[2.2]" />;
-      case 'Globe':
-        return <Globe className="w-5 h-5 sm:w-6 sm:h-6 text-white stroke-[2.2]" />;
+      case "Home":
+        return (
+          <Home className="w-5 h-5 sm:w-6 sm:h-6 text-white stroke-[2.2]" />
+        );
+      case "Truck":
+        return (
+          <Truck className="w-5 h-5 sm:w-6 sm:h-6 text-white stroke-[2.2]" />
+        );
+      case "Wrench":
+        return (
+          <Wrench className="w-5 h-5 sm:w-6 sm:h-6 text-white stroke-[2.2]" />
+        );
+      case "Globe":
+        return (
+          <Globe className="w-5 h-5 sm:w-6 sm:h-6 text-white stroke-[2.2]" />
+        );
       default:
-        return <Home className="w-5 h-5 sm:w-6 sm:h-6 text-white stroke-[2.2]" />;
+        return (
+          <Home className="w-5 h-5 sm:w-6 sm:h-6 text-white stroke-[2.2]" />
+        );
     }
   };
 
@@ -71,28 +81,23 @@ export default function Services({ onSelectService }) {
       id="services"
       className="bg-[#fbf9f5] py-16 sm:py-24 relative overflow-hidden"
     >
-      {/* Subtle vintage architectural background engravings (left & right) */}
-      <div className="absolute top-0 left-0 w-80 h-80 pointer-events-none opacity-[0.07] select-none">
-        <svg viewBox="0 0 200 200" fill="none" stroke="#142338" strokeWidth="1" className="w-full h-full">
-          <path d="M20,180 L20,90 L40,70 L60,90 L60,180 Z" />
-          <path d="M40,70 L40,20 L45,15 L50,20 L50,70" />
-          <path d="M70,180 L70,110 L90,95 L110,110 L110,180 Z" />
-          <path d="M90,95 L90,40 L95,35 L100,40 L100,95" />
-          <path d="M120,180 L120,130 L135,115 L150,130 L150,180 Z" />
-          <circle cx="45" cy="45" r="4" />
-          <circle cx="95" cy="65" r="5" />
-        </svg>
+      {/* Luxury Griffin Watermarks (Top-Right Griffin in Armor & Bottom-Left Eagle Head) */}
+      <div className="absolute -top-14 -right-16 w-[420px] sm:w-[540px] pointer-events-none select-none opacity-[0.055] mix-blend-multiply z-0">
+        <img
+          src="/golden-griffin-armor.png"
+          alt=""
+          className="w-full h-auto object-contain"
+          aria-hidden="true"
+        />
       </div>
 
-      <div className="absolute top-0 right-0 w-80 h-80 pointer-events-none opacity-[0.07] select-none -scale-x-100">
-        <svg viewBox="0 0 200 200" fill="none" stroke="#142338" strokeWidth="1" className="w-full h-full">
-          <path d="M20,180 L20,90 L40,70 L60,90 L60,180 Z" />
-          <path d="M40,70 L40,20 L45,15 L50,20 L50,70" />
-          <path d="M70,180 L70,110 L90,95 L110,110 L110,180 Z" />
-          <path d="M90,95 L90,40 L95,35 L100,40 L100,95" />
-          <circle cx="45" cy="45" r="4" />
-          <circle cx="95" cy="65" r="5" />
-        </svg>
+      <div className="absolute -bottom-12 -left-12 w-64 sm:w-80 pointer-events-none select-none opacity-[0.045] mix-blend-multiply z-0">
+        <img
+          src="/golden-eagle-head.png"
+          alt=""
+          className="w-full h-auto object-contain"
+          aria-hidden="true"
+        />
       </div>
 
       <div className="max-w-[1280px] mx-auto px-5 sm:px-8 relative z-10">
@@ -108,8 +113,8 @@ export default function Services({ onSelectService }) {
             Explore Our Services
           </h2>
 
-          <p className="text-xs sm:text-sm text-[#64748b] leading-relaxed max-w-2xl mx-auto">
-            We connect places, people and opportunities through reliable and modern construction solutions.
+          <p className="text-xs sm:text-sm text-[#64748b] leading-relaxed max-w-3xl mx-auto">
+            We work locally and think globally
           </p>
         </div>
 
@@ -175,7 +180,10 @@ export default function Services({ onSelectService }) {
                 {/* Bullet Points with delicate amber checkmarks */}
                 <ul className="space-y-2 mb-6 flex-1">
                   {item.features.map((feat, fIdx) => (
-                    <li key={fIdx} className="flex items-start gap-2 text-xs text-[#556477]">
+                    <li
+                      key={fIdx}
+                      className="flex items-start gap-2 text-xs text-[#556477]"
+                    >
                       <Check className="w-3.5 h-3.5 text-[#d88918] shrink-0 stroke-[2.5] mt-0.5" />
                       <span className="leading-snug">{feat}</span>
                     </li>
