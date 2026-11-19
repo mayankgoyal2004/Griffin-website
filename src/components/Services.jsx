@@ -81,8 +81,8 @@ export default function Services({ onSelectService }) {
       id="services"
       className="bg-[#fbf9f5] py-16 sm:py-24 relative overflow-hidden"
     >
-      {/* Luxury Griffin Watermarks (Top-Right Griffin in Armor & Bottom-Left Eagle Head) */}
-      <div className="absolute -top-14 -right-16 w-[420px] sm:w-[540px] pointer-events-none select-none opacity-[0.055] mix-blend-multiply z-0">
+      {/* Symmetrical Heraldic Griffin Guardians flanking the section header */}
+      <div className="absolute -top-14 -left-16 w-[420px] sm:w-[540px] pointer-events-none select-none opacity-[0.055] mix-blend-multiply z-0 -scale-x-100">
         <img
           src="/golden-griffin-armor.png"
           alt=""
@@ -91,9 +91,9 @@ export default function Services({ onSelectService }) {
         />
       </div>
 
-      <div className="absolute -bottom-12 -left-12 w-64 sm:w-80 pointer-events-none select-none opacity-[0.045] mix-blend-multiply z-0">
+      <div className="absolute -top-14 -right-16 w-[420px] sm:w-[540px] pointer-events-none select-none opacity-[0.055] mix-blend-multiply z-0">
         <img
-          src="/golden-eagle-head.png"
+          src="/golden-griffin-armor.png"
           alt=""
           className="w-full h-auto object-contain"
           aria-hidden="true"

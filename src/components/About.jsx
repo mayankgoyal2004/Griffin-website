@@ -81,20 +81,10 @@ export default function About({ onOpenQuote }) {
 
   return (
     <section ref={sectionRef} id="about" className="bg-[#eaf0f2] text-[#142b45] py-16 sm:py-20 relative overflow-hidden">
-      {/* Luxury Brand Watermark: Golden Griffin with Ornate Armor (Right / Center behind stats & copy) */}
-      <div className="absolute -right-16 top-1/2 -translate-y-1/2 w-[480px] sm:w-[620px] lg:w-[720px] pointer-events-none select-none opacity-[0.08] mix-blend-multiply z-0">
+      {/* Golden Building Skyline Watermark */}
+      <div className="absolute -right-8 top-1/2 -translate-y-1/2 w-[380px] sm:w-[480px] lg:w-[540px] pointer-events-none select-none opacity-[0.06] mix-blend-multiply z-0">
         <img
-          src="/golden-griffin-armor.png"
-          alt=""
-          className="w-full h-auto object-contain"
-          aria-hidden="true"
-        />
-      </div>
-
-      {/* Luxury Brand Watermark: Golden Eagle Head (Bottom-Left behind photos) */}
-      <div className="absolute -bottom-10 -left-10 w-56 sm:w-72 pointer-events-none select-none opacity-[0.06] mix-blend-multiply z-0">
-        <img
-          src="/golden-eagle-head.png"
+          src="/watermark-skyline-crescent.png"
           alt=""
           className="w-full h-auto object-contain"
           aria-hidden="true"

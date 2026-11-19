@@ -75,10 +75,10 @@ export default function Advantage() {
 
   return (
     <section ref={sectionRef} id="advantage" className="py-8 sm:py-10 bg-[#fffdfa] border-t border-[#ece7de] overflow-hidden relative">
-      {/* Subtle Griffin Line Art Watermark */}
-      <div className="absolute -left-10 top-1/2 -translate-y-1/2 w-48 pointer-events-none select-none opacity-[0.045] mix-blend-multiply z-0">
+      {/* Majestic Golden Griffin Wing Watermark */}
+      <div className="absolute -right-10 top-1/2 -translate-y-1/2 w-[340px] sm:w-[440px] pointer-events-none select-none opacity-[0.07] mix-blend-multiply z-0">
         <img
-          src="/golden-eagle-head.png"
+          src="/golden-griffin-wing.png"
           alt=""
           className="w-full h-auto object-contain"
           aria-hidden="true"
